@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Mines — Играй в Демо | Стратегии, Сигналы и Обзор Игры 2025</title>
+  <meta name="description" content="Mines ✦ Полный обзор игры: правила, лучшие стратегии (Мартингейл, Low Risk), демо-режим, сигналы и RTP 97%. Аналитический подход к Mines."/>
+  <meta name="keywords" content="Mines, Mines демо, Mines сигналы, Mines стратегия, Mines обзор, Mines apk, Provably Fair, RTP 97%"/>
+  <link rel="canonical" href="https://minespromo.top/"/>
+  <meta name="robots" content="index, follow"/>
+
+  <meta property="og:title" content="Mines — Стратегии, Сигналы и Демо 2025"/>
+  <meta property="og:description" content="Аналитический обзор игры Mines: стратегии, демо-режим, генератор сигналов и технология Provably Fair."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:locale" content="ru_RU"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { 'inter': ['Inter', 'sans-serif'] },
+          colors: {
+            'cyber-bg': '#0a0a0f',
+            'cyber-card': 'rgba(255,255,255,0.04)',
+            'cyber-border': 'rgba(255,255,255,0.08)',
+            'cyber-green': '#00ff88',
+            'cyber-blue': '#3b82f6',
+            'cyber-purple': '#a855f7',
+            'cyber-red': '#ef4444',
+            'cyber-yellow': '#facc15',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: #0a0a0f; color: #e2e8f0; }
+
+    /* Glassmorphism */
+    .glass {
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .glass-strong {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* Glow effects */
+    .glow-green { box-shadow: 0 0 30px rgba(0,255,136,0.15), inset 0 0 30px rgba(0,255,136,0.03); }
+    .glow-blue { box-shadow: 0 0 30px rgba(59,130,246,0.15), inset 0 0 30px rgba(59,130,246,0.03); }
+    .glow-purple { box-shadow: 0 0 40px rgba(168,85,247,0.2), inset 0 0 30px rgba(168,85,247,0.05); }
+    .text-glow-green { text-shadow: 0 0 20px rgba(0,255,136,0.5); }
+
+    /* Grid cell animation & Styling */
+    .mine-cell {
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      min-height: 50px;
+      min-width: 50px;
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.05), 0 4px 10px rgba(0,0,0,0.5);
+      background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.01) 100%);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+    .mine-cell:hover { 
+      transform: translateY(-2px) scale(1.05); 
+      box-shadow: inset 0 2px 4px rgba(255,255,255,0.1), 0 6px 15px rgba(168,85,247,0.3); 
+      border-color: rgba(168,85,247,0.4);
+    }
+    .mine-cell.revealed-star {
+      background: linear-gradient(145deg, rgba(0,255,136,0.2) 0%, rgba(0,255,136,0.05) 100%) !important;
+      border-color: rgba(0,255,136,0.5) !important;
+      animation: pulseGreen 2s ease-in-out infinite;
+      box-shadow: inset 0 2px 10px rgba(0,255,136,0.2), 0 0 15px rgba(0,255,136,0.3);
+    }
+    .mine-cell.revealed-mine {
+      background: linear-gradient(145deg, rgba(239,68,68,0.2) 0%, rgba(239,68,68,0.05) 100%) !important;
+      border-color: rgba(239,68,68,0.5) !important;
+      animation: pulseRed 2s ease-in-out infinite;
+      box-shadow: inset 0 2px 10px rgba(239,68,68,0.2), 0 0 15px rgba(239,68,68,0.3);
+    }
+    @keyframes pulseGreen {
+      0%, 100% { box-shadow: 0 0 10px rgba(0,255,136,0.2); }
+      50% { box-shadow: 0 0 25px rgba(0,255,136,0.5); }
+    }
+    @keyframes pulseRed {
+      0%, 100% { box-shadow: 0 0 10px rgba(239,68,68,0.2); }
+      50% { box-shadow: 0 0 25px rgba(239,68,68,0.5); }
+    }
+
+    /* Scanner effect for bot */
+    .scanner-overlay {
+      position: absolute; top: 0; left: 0; right: 0; height: 100%;
+      background: linear-gradient(to bottom, transparent, rgba(168,85,247,0.15) 50%, transparent);
+      animation: scan 2.5s ease-in-out infinite alternate;
+      pointer-events: none; opacity: 0; transition: opacity 0.3s;
+    }
+    .is-scanning .scanner-overlay { opacity: 1; }
+    @keyframes scan {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+
+    /* Pulse dot */
+    .pulse-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: #00ff88;
+      animation: pulseDot 2s ease-in-out infinite;
+    }
+    @keyframes pulseDot {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(0,255,136,0.7); }
+      50% { opacity: 0.7; box-shadow: 0 0 0 6px rgba(0,255,136,0); }
+    }
+
+    /* Gradient text */
+    .gradient-text {
+      background: linear-gradient(135deg, #00ff88 0%, #3b82f6 50%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Loading bar for signal */
+    .signal-loader {
+      width: 0%; height: 4px;
+      background: linear-gradient(90deg, #00ff88, #3b82f6, #a855f7);
+      border-radius: 2px;
+      transition: width 1.8s ease-in-out;
+      box-shadow: 0 0 10px rgba(168,85,247,0.5);
+    }
+    .signal-loader.active { width: 100%; }
+
+    /* Bottom nav */
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      z-index: 50;
+      background: rgba(10,10,15,0.95);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    /* Sticky CTA */
+    .sticky-cta {
+      position: fixed;
+      bottom: 72px;
+      right: 16px;
+      z-index: 45;
+    }
+
+    /* FAQ toggle */
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+    .faq-item.open .faq-answer { max-height: 500px; }
+    .faq-item.open .faq-chevron { transform: rotate(180deg); }
+    .faq-chevron { transition: transform 0.3s ease; }
+
+    /* Strategy card hover */
+    .strategy-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .strategy-card:hover { transform: translateY(-4px); }
+
+    /* Table styling */
+    .comparison-table th { background: rgba(255,255,255,0.06); }
+    .comparison-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+    .comparison-table tr:hover td { background: rgba(0,255,136,0.03); }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: #0a0a0f; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 3px; }
+
+    /* Bento gap on mobile */
+    @media (max-width: 768px) {
+      .bento-grid { gap: 12px !important; }
+    }
+  </style>
+</head>
+
+<body class="font-inter antialiased overflow-x-hidden pb-20">
+
+  <header class="glass sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-2">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-cyber-green to-cyber-blue flex items-center justify-center font-bold text-cyber-bg text-sm">M</div>
+        <span class="font-bold text-lg text-white">Mines<span class="text-cyber-green">.Guide</span></span>
+      </a>
+      
+      <nav class="hidden md:flex items-center gap-6 text-sm text-gray-400">
+        <a href="#how-to-play" data-i18n="navRules" class="hover:text-cyber-green transition">Правила</a>
+        <a href="#signal-bot" data-i18n="navSignals" class="hover:text-cyber-green transition">Сигналы</a>
+        <a href="#strategies" data-i18n="navStrategies" class="hover:text-cyber-green transition">Стратегии</a>
+        <a href="#provably-fair" data-i18n="navFair" class="hover:text-cyber-green transition">Provably Fair</a>
+        <a href="#faq" data-i18n="navFaq" class="hover:text-cyber-green transition">FAQ</a>
+      </nav>
+
+      <div class="flex items-center gap-2 sm:gap-4">
+        <select id="langSwitch" onchange="changeLanguage(this.value)" class="bg-black/40 text-white text-xs sm:text-sm font-bold outline-none cursor-pointer border border-cyber-border rounded-lg px-2 py-1.5 glass-strong">
+          <option value="ru" class="bg-cyber-bg">🇷🇺 RU</option>
+          <option value="en" class="bg-cyber-bg">🇬🇧 EN</option>
+          <option value="hi" class="bg-cyber-bg">🇮🇳 HI</option>
+          <option value="tl" class="bg-cyber-bg">🇵🇭 PH</option>
+        </select>
+        
+        <a href="https://lkiv.cc/dea2" target="_blank" data-i18n="btnCasinoTop" class="hidden sm:flex px-4 py-1.5 rounded-lg bg-gradient-to-r from-cyber-green to-emerald-500 text-cyber-bg font-bold text-sm hover:shadow-lg hover:shadow-cyber-green/25 transition-all whitespace-nowrap">
+          Перейти в казино
+        </a>
+
+        <div class="hidden lg:flex items-center gap-2 ml-2">
+          <div class="pulse-dot"></div>
+          <span class="text-xs text-cyber-green font-medium" data-i18n="serverStatus">Серверы: Online</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="relative pt-12 pb-16 px-4 overflow-hidden" id="hero">
+    <div class="absolute inset-0 pointer-events-none">
+      <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-cyber-green/5 rounded-full blur-[120px]"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyber-blue/5 rounded-full blur-[120px]"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="flex items-center justify-center gap-4 mb-8 flex-wrap">
+        <div class="glass-strong rounded-full px-4 py-1.5 flex items-center gap-2 text-xs">
+          <div class="pulse-dot"></div>
+          <span class="text-gray-300" data-i18n="statOnline">Game Servers: <span class="text-cyber-green font-semibold">Online</span></span>
+        </div>
+        <div class="glass-strong rounded-full px-4 py-1.5 flex items-center gap-2 text-xs">
+          <span class="text-gray-400" data-i18n="statRtp">RTP:</span>
+          <span class="text-cyber-green font-semibold">97.00%</span>
+        </div>
+        <div class="glass-strong rounded-full px-4 py-1.5 flex items-center gap-2 text-xs">
+          <span class="text-gray-400" data-i18n="statPlaying">Играют сейчас:</span>
+          <span class="text-white font-semibold" id="players-count">12,847</span>
+        </div>
+      </div>
+
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-tight mb-6" data-i18n="heroTitle">
+          <span class="gradient-text">Mines</span> — Аналитический Обзор Игры, Стратегии и Демо
+          <span class="text-cyber-green">2025</span>
+        </h1>
+        <p class="text-base sm:text-lg text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed" data-i18n="heroDesc">
+          Полное руководство по игре Mines: от правил и математической модели до продвинутых стратегий управления рисками. Демо-режим, генератор сигналов и проверка честности через Provably Fair.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="https://lkiv.cc/dea2" target="_blank" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-cyber-green to-emerald-500 text-cyber-bg font-bold text-base hover:shadow-lg hover:shadow-cyber-green/25 transition-all duration-300 min-h-[44px] flex items-center justify-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span data-i18n="btnPlay">Играть Сейчас</span>
+          </a>
+          <a href="#strategies" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass-strong text-white font-semibold text-base hover:bg-white/10 transition-all duration-300 min-h-[44px] flex items-center justify-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+            <span data-i18n="btnLearn">Изучить Стратегии</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-12 flex justify-center" aria-hidden="true">
+        <div class="grid grid-cols-5 gap-2 sm:gap-3 max-w-[280px] sm:max-w-[320px]">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform" style="background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3)">⭐</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform" style="background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3)">⭐</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3)">💣</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform" style="background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3)">⭐</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform" style="background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3)">⭐</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform" style="background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3)">⭐</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3)">💣</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3)">💣</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform" style="background:rgba(0,255,136,0.1);border:1px solid rgba(0,255,136,0.3)">⭐</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-xl glass-strong flex items-center justify-center text-xl cursor-default hover:scale-105 transition-transform">❓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="max-w-7xl mx-auto px-4 py-12">
+
+    <section id="how-to-play" class="mb-16">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8 flex items-center gap-3" data-i18n="htPTitle">
+        <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-green to-emerald-600 flex items-center justify-center text-lg">📖</span>
+        Как Играть в Mines — Правила за 60 Секунд
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 bento-grid">
+        <article class="glass rounded-2xl p-6 glow-green strategy-card" data-i18n="htP1">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-cyber-green/10 border border-cyber-green/20 flex items-center justify-center text-cyber-green font-bold text-lg">1</div>
+            <h3 class="font-bold text-lg text-white">Настройка Поля</h3>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Выберите размер ставки и количество мин на поле (от 1 до 24). Чем больше мин — тем выше множитель при каждом открытии, но и выше риск. Стандартное поле Mines — сетка 5×5 с 25 ячейками.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-gray-400">
+            <li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> Минимум мин: 1 (безопасный режим)</li>
+            <li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> Оптимально: 3-5 мин для баланса</li>
+            <li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> Максимум мин: 24 (максимальный множитель)</li>
+          </ul>
+        </article>
+
+        <article class="glass rounded-2xl p-6 glow-blue strategy-card" data-i18n="htP2">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center text-cyber-blue font-bold text-lg">2</div>
+            <h3 class="font-bold text-lg text-white">Открытие Ячеек</h3>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Нажимайте на ячейки поочерёдно. Под каждой скрывается звезда (выигрыш) или мина (проигрыш). Каждая открытая звезда увеличивает ваш текущий множитель. Стратегия Mines строится на выборе оптимального момента для остановки.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-gray-400">
+            <li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> ⭐ Звезда = множитель растёт</li>
+            <li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> 💣 Мина = потеря ставки</li>
+            <li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> Множитель рассчитывается динамически</li>
+          </ul>
+        </article>
+
+        <article class="glass rounded-2xl p-6 glow-purple strategy-card" data-i18n="htP3">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-xl bg-cyber-purple/10 border border-cyber-purple/20 flex items-center justify-center text-cyber-purple font-bold text-lg">3</div>
+            <h3 class="font-bold text-lg text-white">Вывод Выигрыша</h3>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            В любой момент нажмите «Забрать» и зафиксируйте прибыль. Это ключевой элемент игры Mines — баланс между жадностью и аналитическим контролем. Опытные игроки используют заранее определённые точки выхода.
+          </p>
+          <ul class="mt-4 space-y-2 text-sm text-gray-400">
+            <li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> Забрать можно после первой звезды</li>
+            <li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> Авто-вывод настраивается на множитель</li>
+            <li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> Дисциплина = ключ к профиту</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section id="signal-bot" class="mb-16">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8 flex items-center gap-3" data-i18n="sigTitle">
+        <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-purple to-pink-600 flex items-center justify-center text-lg shadow-lg shadow-cyber-purple/30">🔮</span>
+        Анализатор PF — Генератор Сигналов Mines
+      </h2>
+
+      <div class="glass rounded-[2rem] p-6 sm:p-8 glow-purple max-w-2xl mx-auto relative overflow-hidden border border-cyber-purple/30 bg-gradient-to-b from-white/5 to-transparent">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-cyber-purple/10 rounded-full blur-[80px] pointer-events-none"></div>
+
+        <div class="flex items-center justify-between mb-6 relative z-10">
+          <div class="flex items-center gap-3">
+            <div class="w-3 h-3 rounded-full bg-cyber-green animate-pulse shadow-[0_0_10px_#00ff88]"></div>
+            <span class="text-sm font-bold text-white tracking-wide" data-i18n="sigAiVer">AI PREDICTOR v4.0</span>
+          </div>
+          <div class="glass-strong border-cyber-purple/50 rounded-full px-4 py-1.5 text-xs text-cyber-purple font-bold uppercase tracking-wider" data-i18n="sigAiActive">
+            Нейросеть Активна
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 mb-8 relative z-10">
+          <div class="glass-strong bg-black/40 rounded-xl p-4 border border-white/5">
+            <label class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block mb-2" data-i18n="sigMineCount">Количество мин</label>
+            <select id="mineCount" class="w-full bg-transparent text-white text-base font-bold outline-none cursor-pointer">
+              <option value="1" class="bg-cyber-bg" data-i18n="sig1mine">1 мина</option>
+              <option value="3" selected class="bg-cyber-bg" data-i18n="sig3mine">3 мины</option>
+              <option value="5" class="bg-cyber-bg" data-i18n="sig5mine">5 мин</option>
+              <option value="7" class="bg-cyber-bg" data-i18n="sig7mine">7 мин</option>
+            </select>
+          </div>
+          <div class="glass-strong bg-black/40 rounded-xl p-4 border border-white/5">
+            <label class="text-[10px] text-gray-500 uppercase font-bold tracking-wider block mb-2" data-i18n="sigAccuracy">Точность прогноза</label>
+            <div class="text-white text-base font-bold flex items-center gap-2" id="accuracy-display">
+              <span class="text-cyber-green animate-pulse">●</span> 82.4%
+            </div>
+          </div>
+        </div>
+
+        <div class="relative bg-black/50 rounded-2xl p-6 mb-6 border border-white/5 shadow-inner" id="grid-wrapper">
+          <div class="scanner-overlay"></div>
+          <div class="grid grid-cols-5 gap-2 sm:gap-3 relative z-10" id="signal-grid"></div>
+        </div>
+
+        <div class="mb-6 rounded-full overflow-hidden bg-black/50 h-1.5 border border-white/5">
+          <div class="signal-loader" id="signal-loader"></div>
+        </div>
+
+        <button onclick="generateSignal()" id="generate-btn" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyber-purple to-indigo-600 text-white font-black text-base uppercase tracking-wider hover:shadow-[0_0_30px_rgba(168,85,247,0.4)] hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3 relative z-10 mb-4">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <span data-i18n="sigBtnAnalyze">Анализировать поле</span>
+        </button>
+
+        <a href="https://lkiv.cc/dea2" target="_blank" class="w-full py-4 rounded-xl bg-gradient-to-r from-cyber-green to-emerald-500 text-cyber-bg font-black text-base uppercase tracking-wider hover:shadow-[0_0_30px_rgba(0,255,136,0.4)] hover:scale-[1.02] transition-all duration-300 flex items-center justify-center gap-3 relative z-10">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          <span data-i18n="sigBtnCasino">Перейти в казино</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="strategies" class="mb-16">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 flex items-center gap-3" data-i18n="stratTitle">
+        <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-blue to-indigo-600 flex items-center justify-center text-lg">🧠</span>
+        Лучшие Стратегии для Mines
+      </h2>
+      <p class="text-gray-400 text-sm mb-8 max-w-2xl" data-i18n="stratDesc">
+        Аналитический подход к управлению рисками в Mines. Каждая стратегия имеет свой профиль доходность/риск.
+        Ни одна стратегия не гарантирует выигрыш — используйте банкролл-менеджмент.
+      </p>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 bento-grid">
+        <article class="glass rounded-2xl overflow-hidden strategy-card" data-i18n="strat1">
+          <div class="h-2 bg-gradient-to-r from-cyber-yellow to-orange-500"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold text-lg text-white">Стратегия «Мартингейл»</h3>
+              <span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-yellow">Средний Риск</span>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              Классический подход к банкролл-менеджменту в Mines. После каждого проигрыша ставка удваивается, после выигрыша — возвращается к базовой. Математическая логика: одна победа компенсирует серию поражений.
+            </p>
+            <div class="glass-strong rounded-xl p-4 space-y-2">
+              <div class="flex justify-between text-sm"><span class="text-gray-500">Мины:</span><span class="text-white font-medium">3</span></div>
+              <div class="flex justify-between text-sm"><span class="text-gray-500">Открывать ячеек:</span><span class="text-white font-medium">2-3</span></div>
+              <div class="flex justify-between text-sm"><span class="text-gray-500">Риск-профиль:</span><span class="text-cyber-yellow font-medium">Средний</span></div>
+              <div class="flex justify-between text-sm"><span class="text-gray-500">Банкролл:</span><span class="text-white font-medium">x20 от ставки</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="glass rounded-2xl overflow-hidden strategy-card" data-i18n="strat2">
+          <div class="h-2 bg-gradient-to-r from-cyber-green to-emerald-500"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold text-lg text-white">Стратегия «Малые Ставки»</h3>
+              <span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-green">Низкий Риск</span>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              Консервативный метод для долгих сессий. Минимальное количество мин, открытие 3-4 безопасных ячеек и фиксация прибыли. Идеальная стратегия Mines для новичков, изучающих механику.
+            </p>
+            <div class="glass-strong rounded-xl p-4 space-y-2">
+              <div class="flex justify-between text-sm"><span class="text-gray-500">Мины:</span><span class="text-white font-medium">1-3</span></div>
+              <div class="flex justify-between text-sm"><span class="text-gray-500">Открывать ячеек:</span><span class="text-white font-medium">3-4</span></div>
+              <div class="flex justify-between text-sm"><span class="text-gray-500">Риск-профиль:</span><span class="text-cyber-green font-medium">Низкий</span></div>
+              <div class="flex justify-between text-sm"><span class="text-gray-500">Банкролл:</span><span class="text-white font-medium">x10 от ставки</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="glass rounded-2xl overflow-hidden strategy-card" data-i18n="strat3">
+          <div class="h-2 bg-gradient-to-r from-cyber-red to-rose-500"></div>
+          <div class="p-6">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold text-lg text-white">Стратегия «Высокий Риск»</h3>
+              <span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-red">Высокий Риск</span>
+            </div>
+            <p class="text-gray-400 text-sm leading-relaxed mb-4">
+              Агрессивный подход для опытных игроков. Большое количество мин (7-10) с открытием 1-2 ячеек. Множители x3-x10+ с первого клика. Требует железной дисциплины и строгого лимита потерь.
+            </p>
+            <div class="glass-strong rounded-xl p-4 space-y-2">
+              <div class="flex justify-between text-sm"><span class="text-gray-500">Мины:</span><span class="text-white font-medium">7-10</span></div>
+              <div class="flex justify-between text-sm"><span class="text-gray-500">Открывать ячеек:</span><span class="text-white font-medium">1-2</span></div>
+              <div class="flex justify-between text-sm"><span class="text-gray-500">Риск-профиль:</span><span class="text-cyber-red font-medium">Высокий</span></div>
+              <div class="flex justify-between text-sm"><span class="text-gray-500">Банкролл:</span><span class="text-white font-medium">x50 от ставки</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="comparison" class="mb-16">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-3 flex items-center gap-3" data-i18n="tabTitle">
+        <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-lg">📊</span>
+        Mines vs Другие Игры — Сравнительная Таблица
+      </h2>
+      <p class="text-gray-400 text-sm mb-8 max-w-2xl" data-i18n="tabDesc">
+        Объективное сравнение ключевых параметров популярных краш-игр. Данные основаны на официальной документации провайдеров.
+      </p>
+
+      <div class="glass rounded-2xl overflow-hidden overflow-x-auto" data-i18n="tabTable">
+        <table class="comparison-table w-full text-sm text-left min-w-[600px]">
+          <thead>
+            <tr>
+              <th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Параметр</th>
+              <th class="px-6 py-4 font-semibold text-cyber-green border-b border-cyber-border">Mines ⭐</th>
+              <th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Aviator</th>
+              <th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Plinko</th>
+              <th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Dice</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">RTP</td>
+              <td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">97.00%</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">97.00%</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">96.00%</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">98.00%</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Макс. множитель</td>
+              <td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">x24,750</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x100+</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x1,000</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x9,900</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Контроль рисков</td>
+              <td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">Полный</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Частичный</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Низкий</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Полный</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Provably Fair</td>
+              <td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">✅ Да</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ Да</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ Да</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ Да</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Темп игры</td>
+              <td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">Свободный</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Быстрый</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Быстрый</td>
+              <td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Свободный</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 text-gray-400 font-medium">Аналитический компонент</td>
+              <td class="px-6 py-4 text-cyber-green font-semibold">Высокий ★★★</td>
+              <td class="px-6 py-4 text-gray-300">Средний ★★</td>
+              <td class="px-6 py-4 text-gray-300">Низкий ★</td>
+              <td class="px-6 py-4 text-gray-300">Средний ★★</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="provably-fair" class="mb-16">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8 flex items-center gap-3" data-i18n="pfTitle">
+        <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-lg">🔐</span>
+        Технология Provably Fair и RTP
+      </h2>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 bento-grid">
+        
+        <article class="glass rounded-2xl p-6 sm:p-8 flex flex-col h-full" data-i18n="pf1">
+          <h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2">
+            <span class="text-cyber-green">🛡️</span> Provably Fair
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">
+            Provably Fair — это криптографический протокол, гарантирующий честность каждого раунда Mines. Перед началом игры сервер генерирует хеш (SHA-256) расположения мин. Вы получаете его до старта и можете проверить после.
+          </p>
+          <div class="glass-strong rounded-xl p-3 font-mono text-xs text-gray-500 break-all mt-auto border border-cyber-green/20">
+            SHA-256: e3b0c44298fc1c14...
+          </div>
+        </article>
+
+        <article class="glass rounded-2xl p-6 sm:p-8 flex flex-col h-full" data-i18n="pf2">
+          <h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2">
+            <span class="text-cyber-blue">📈</span> RTP 97%
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">
+            RTP (Return to Player) — статистический показатель возврата. В Mines он составляет 97%. Это значит, что из 1000₽ ставок возвращается в среднем 970₽.
+          </p>
+          <div class="glass-strong rounded-xl p-5 mt-auto border border-cyber-blue/20">
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-sm text-gray-400">Возврат игрокам</span>
+              <span class="text-lg font-bold text-cyber-green">97.00%</span>
+            </div>
+            <div class="w-full h-3 bg-white/5 rounded-full overflow-hidden">
+              <div class="h-full rounded-full bg-gradient-to-r from-cyber-green to-emerald-500" style="width:97%"></div>
+            </div>
+            <div class="flex justify-between mt-2 text-xs text-gray-500">
+              <span>0%</span>
+              <span>House Edge: 3%</span>
+              <span>100%</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="glass rounded-2xl p-6 sm:p-8 flex flex-col h-full" data-i18n="pf3">
+          <h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2">
+            <span class="text-cyber-purple">⚙️</span> Сертификация RNG
+          </h3>
+          <p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">
+            Алгоритм генерации случайных чисел (RNG) регулярно проходит независимый аудит. Это гарантирует отсутствие паттернов и 100% случайный результат при открытии ячеек.
+          </p>
+          <div class="glass-strong rounded-xl p-4 mt-auto border border-cyber-purple/20 flex items-center gap-3">
+             <div class="w-8 h-8 rounded-full bg-cyber-purple/20 flex items-center justify-center text-sm">📜</div>
+             <div>
+               <h4 class="text-white font-bold text-xs uppercase">Аудит пройден</h4>
+               <p class="text-[10px] text-gray-500 mt-0.5">Защита от предиктов</p>
+             </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="apk" class="mb-16">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8 flex items-center gap-3" data-i18n="apkTitle">
+        <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-lg">📱</span>
+        Скачать Mines APK
+      </h2>
+
+      <div class="glass rounded-2xl p-6 sm:p-8 max-w-2xl" data-i18n="apkContent">
+        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+          Мобильная версия Mines доступна для Android через APK-файл. Установка позволяет играть в Mines с оптимизированным интерфейсом, push-уведомлениями о бонусах и стабильным соединением.
+        </p>
+
+        <div class="glass-strong rounded-xl p-4 space-y-3 mb-6">
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">1</div>
+            <div>
+              <p class="text-sm font-medium text-white">Перейдите на официальный сайт платформы</p>
+              <p class="text-xs text-gray-500 mt-0.5">Используйте только проверенные источники</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">2</div>
+            <div>
+              <p class="text-sm font-medium text-white">Скачайте APK из раздела «Мобильное приложение»</p>
+              <p class="text-xs text-gray-500 mt-0.5">Размер файла: ~25-40 MB</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">3</div>
+            <div>
+              <p class="text-sm font-medium text-white">Разрешите установку из неизвестных источников</p>
+              <p class="text-xs text-gray-500 mt-0.5">Настройки → Безопасность → Неизвестные источники</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">4</div>
+            <div>
+              <p class="text-sm font-medium text-white">Установите и запустите Mines APK</p>
+              <p class="text-xs text-gray-500 mt-0.5">Требуется Android 6.0+</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-wrap gap-3">
+          <div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2">
+            <span class="text-cyber-green">✓</span> Android 6.0+
+          </div>
+          <div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2">
+            <span class="text-cyber-green">✓</span> Размер: ~30 MB
+          </div>
+          <div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2">
+            <span class="text-cyber-green">✓</span> Бесплатно
+          </div>
+          <div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2">
+            <span class="text-cyber-green">✓</span> Демо-режим
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="mb-16">
+      <h2 class="text-2xl sm:text-3xl font-bold text-white mb-8 flex items-center gap-3" data-i18n="faqTitle">
+        <span class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-lg">❓</span>
+        Часто Задаваемые Вопросы (FAQ)
+      </h2>
+
+      <div class="space-y-3 max-w-3xl">
+        <div class="faq-item glass rounded-2xl overflow-hidden" data-i18n="faq1">
+          <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]">
+            <span class="font-semibold text-white text-sm sm:text-base">Что такое Mines и как в неё играть?</span>
+            <svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">
+              Mines — это краш-игра на основе минного поля. Игрок открывает ячейки на сетке 5×5, стараясь найти звёзды и избежать мин. Каждая найденная звезда увеличивает множитель выигрыша. Вы можете забрать выигрыш в любой момент до того, как откроете мину. Количество мин настраивается от 1 до 24, что позволяет контролировать уровень риска.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item glass rounded-2xl overflow-hidden" data-i18n="faq2">
+          <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]">
+            <span class="font-semibold text-white text-sm sm:text-base">Какой RTP у игры Mines?</span>
+            <svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">
+              RTP (Return to Player) игры Mines составляет <strong class="text-white">97%</strong>. Это один из лучших показателей среди краш-игр. Это означает, что в долгосрочной перспективе из каждых 100 единиц ставок игрокам возвращается в среднем 97 единиц. House Edge составляет всего 3%.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item glass rounded-2xl overflow-hidden" data-i18n="faq3">
+          <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]">
+            <span class="font-semibold text-white text-sm sm:text-base">Можно ли играть в Mines бесплатно в демо-режиме?</span>
+            <svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">
+              Да, большинство платформ предоставляют <strong class="text-white">демо-режим Mines</strong> без регистрации. Это позволяет изучить механику игры, протестировать стратегии и понять математическую модель без финансовых рисков. Демо-версия использует виртуальные кредиты и полностью повторяет алгоритм реальной игры.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item glass rounded-2xl overflow-hidden" data-i18n="faq4">
+          <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]">
+            <span class="font-semibold text-white text-sm sm:text-base">Что такое Provably Fair в Mines?</span>
+            <svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">
+              <strong class="text-white">Provably Fair</strong> — это криптографический протокол, который позволяет игроку математически проверить честность каждого раунда. Используется хеширование серверного (Server Seed) и клиентского (Client Seed) ключей через алгоритм SHA-256. Это полностью исключает манипуляции со стороны платформы и делает Mines одной из самых прозрачных игр.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item glass rounded-2xl overflow-hidden" data-i18n="faq5">
+          <button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]">
+            <span class="font-semibold text-white text-sm sm:text-base">Какая лучшая стратегия для Mines?</span>
+            <svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">
+              Не существует стратегии, гарантирующей выигрыш в Mines. Однако аналитический подход <strong class="text-white">«Малые ставки»</strong> (3 мины, открытие 3-4 ячеек) считается наименее рискованным. Стратегия <strong class="text-white">Мартингейл</strong> помогает управлять банкроллом при серии проигрышей. Подход <strong class="text-white">High Risk</strong> (7+ мин) подходит опытным игрокам с крупным банкроллом.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-cyber-border py-8 px-4">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+        <div data-i18n="footerAbout">
+          <div class="flex items-center gap-2 mb-3">
+            <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-cyber-green to-cyber-blue flex items-center justify-center font-bold text-cyber-bg text-xs">M</div>
+            <span class="font-bold text-white">Mines<span class="text-cyber-green">.Guide</span></span>
+          </div>
+          <p class="text-xs text-gray-500 leading-relaxed">
+            Аналитический ресурс, посвящённый игре Mines. Обзоры, стратегии, технический разбор и демо-режим.
+          </p>
+        </div>
+        <div data-i18n="footerNav">
+          <h4 class="font-semibold text-sm text-white mb-3">Навигация</h4>
+          <nav class="space-y-2 text-xs text-gray-500">
+            <a href="#how-to-play" class="block hover:text-cyber-green transition">Как играть</a>
+            <a href="#signal-bot" class="block hover:text-cyber-green transition">Генератор сигналов</a>
+            <a href="#strategies" class="block hover:text-cyber-green transition">Стратегии Mines</a>
+            <a href="#provably-fair" class="block hover:text-cyber-green transition">Provably Fair</a>
+            <a href="#faq" class="block hover:text-cyber-green transition">FAQ</a>
+          </nav>
+        </div>
+        <div data-i18n="footerLegal">
+          <h4 class="font-semibold text-sm text-white mb-3">Информация</h4>
+          <div class="space-y-2 text-xs text-gray-500">
+            <p>Контент предназначен для лиц 18+</p>
+            <p>Играйте ответственно</p>
+            <p>Данный сайт не является оператором азартных игр</p>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-cyber-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4" data-i18n="footerCopy">
+        <p class="text-xs text-gray-600">© 2025 Mines.Guide — Все права защищены</p>
+        <div class="flex items-center gap-4 text-xs text-gray-600">
+          <span>18+</span>
+          <span>|</span>
+          <span>Играйте ответственно</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="sticky-cta md:hidden">
+    <a href="https://lkiv.cc/dea2" target="_blank" class="w-14 h-14 rounded-full bg-gradient-to-br from-cyber-green to-emerald-500 flex items-center justify-center shadow-lg shadow-cyber-green/25 active:scale-95 transition-transform">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-cyber-bg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"/><path stroke-linecap="round" stroke-linejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </a>
+  </div>
+
+  <nav class="bottom-nav md:hidden">
+    <div class="grid grid-cols-4 max-w-md mx-auto">
+      <a href="#hero" class="flex flex-col items-center py-2.5 text-cyber-green">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+        <span class="text-[10px] font-medium" data-i18n="navBotHome">Главная</span>
+      </a>
+      <a href="#strategies" class="flex flex-col items-center py-2.5 text-gray-500 hover:text-white transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+        <span class="text-[10px] font-medium" data-i18n="navBotStrat">Стратегии</span>
+      </a>
+      <a href="#signal-bot" class="flex flex-col items-center py-2.5 text-gray-500 hover:text-white transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+        <span class="text-[10px] font-medium" data-i18n="navBotSig">Сигналы</span>
+      </a>
+      <a href="apk.html" class="flex flex-col items-center py-2.5 text-gray-500 hover:text-white transition">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mb-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        <span class="text-[10px] font-medium" data-i18n="navBotApk">APK</span>
+      </a>
+    </div>
+  </nav>
+
+  <script src="lang.js"></script>
+  <script>
+    const translations = {
+      ru: {
+        navRules: "Правила", navSignals: "Сигналы", navStrategies: "Стратегии", navFair: "Provably Fair", navFaq: "FAQ",
+        btnCasinoTop: "Перейти в казино", serverStatus: "Серверы: Online",
+        statOnline: "Game Servers: <span class='text-cyber-green font-semibold'>Online</span>",
+        statRtp: "RTP:", statPlaying: "Играют сейчас:",
+        heroTitle: "<span class='gradient-text'>Mines</span> — Аналитический Обзор Игры, Стратегии и Демо <span class='text-cyber-green'>2025</span>",
+        heroDesc: "Полное руководство по игре Mines: от правил и математической модели до продвинутых стратегий управления рисками. Демо-режим, генератор сигналов и проверка честности через Provably Fair.",
+        btnPlay: "Играть Сейчас", btnLearn: "Изучить Стратегии",
+        htPTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-green to-emerald-600 flex items-center justify-center text-lg'>📖</span> Как Играть в Mines — Правила за 60 Секунд",
+        htP1: `<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-cyber-green/10 border border-cyber-green/20 flex items-center justify-center text-cyber-green font-bold text-lg">1</div><h3 class="font-bold text-lg text-white">Настройка Поля</h3></div><p class="text-gray-400 text-sm leading-relaxed">Выберите размер ставки и количество мин на поле (от 1 до 24). Чем больше мин — тем выше множитель при каждом открытии, но и выше риск. Стандартное поле Mines — сетка 5×5 с 25 ячейками.</p><ul class="mt-4 space-y-2 text-sm text-gray-400"><li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> Минимум мин: 1 (безопасный режим)</li><li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> Оптимально: 3-5 мин для баланса</li><li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> Максимум мин: 24 (максимальный множитель)</li></ul>`,
+        htP2: `<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center text-cyber-blue font-bold text-lg">2</div><h3 class="font-bold text-lg text-white">Открытие Ячеек</h3></div><p class="text-gray-400 text-sm leading-relaxed">Нажимайте на ячейки поочерёдно. Под каждой скрывается звезда (выигрыш) или мина (проигрыш). Каждая открытая звезда увеличивает ваш текущий множитель. Стратегия Mines строится на выборе оптимального момента для остановки.</p><ul class="mt-4 space-y-2 text-sm text-gray-400"><li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> ⭐ Звезда = множитель растёт</li><li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> 💣 Мина = потеря ставки</li><li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> Множитель рассчитывается динамически</li></ul>`,
+        htP3: `<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-cyber-purple/10 border border-cyber-purple/20 flex items-center justify-center text-cyber-purple font-bold text-lg">3</div><h3 class="font-bold text-lg text-white">Вывод Выигрыша</h3></div><p class="text-gray-400 text-sm leading-relaxed">В любой момент нажмите «Забрать» и зафиксируйте прибыль. Это ключевой элемент игры Mines — баланс между жадностью и аналитическим контролем. Опытные игроки используют заранее определённые точки выхода.</p><ul class="mt-4 space-y-2 text-sm text-gray-400"><li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> Забрать можно после первой звезды</li><li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> Авто-вывод настраивается на множитель</li><li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> Дисциплина = ключ к профиту</li></ul>`,
+        sigTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-purple to-pink-600 flex items-center justify-center text-lg shadow-lg shadow-cyber-purple/30'>🔮</span> Анализатор PF — Генератор Сигналов Mines",
+        sigAiVer: "AI PREDICTOR v4.0", sigAiActive: "Нейросеть Активна",
+        sigMineCount: "Количество мин", sig1mine: "1 мина", sig3mine: "3 мины", sig5mine: "5 мин", sig7mine: "7 мин",
+        sigAccuracy: "Точность прогноза", sigBtnAnalyze: "Анализировать поле", sigBtnCasino: "Перейти в казино",
+        stratTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-blue to-indigo-600 flex items-center justify-center text-lg'>🧠</span> Лучшие Стратегии для Mines",
+        stratDesc: "Аналитический подход к управлению рисками в Mines. Каждая стратегия имеет свой профиль доходность/риск. Ни одна стратегия не гарантирует выигрыш — используйте банкролл-менеджмент.",
+        strat1: `<div class="h-2 bg-gradient-to-r from-cyber-yellow to-orange-500"></div><div class="p-6"><div class="flex items-center justify-between mb-4"><h3 class="font-bold text-lg text-white">Стратегия «Мартингейл»</h3><span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-yellow">Средний Риск</span></div><p class="text-gray-400 text-sm leading-relaxed mb-4">Классический подход к банкролл-менеджменту в Mines. После каждого проигрыша ставка удваивается, после выигрыша — возвращается к базовой. Математическая логика: одна победа компенсирует серию поражений.</p><div class="glass-strong rounded-xl p-4 space-y-2"><div class="flex justify-between text-sm"><span class="text-gray-500">Мины:</span><span class="text-white font-medium">3</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Открывать ячеек:</span><span class="text-white font-medium">2-3</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Риск-профиль:</span><span class="text-cyber-yellow font-medium">Средний</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Банкролл:</span><span class="text-white font-medium">x20 от ставки</span></div></div></div>`,
+        strat2: `<div class="h-2 bg-gradient-to-r from-cyber-green to-emerald-500"></div><div class="p-6"><div class="flex items-center justify-between mb-4"><h3 class="font-bold text-lg text-white">Стратегия «Малые Ставки»</h3><span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-green">Низкий Риск</span></div><p class="text-gray-400 text-sm leading-relaxed mb-4">Консервативный метод для долгих сессий. Минимальное количество мин, открытие 3-4 безопасных ячеек и фиксация прибыли. Идеальная стратегия Mines для новичков, изучающих механику.</p><div class="glass-strong rounded-xl p-4 space-y-2"><div class="flex justify-between text-sm"><span class="text-gray-500">Мины:</span><span class="text-white font-medium">1-3</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Открывать ячеек:</span><span class="text-white font-medium">3-4</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Риск-профиль:</span><span class="text-cyber-green font-medium">Низкий</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Банкролл:</span><span class="text-white font-medium">x10 от ставки</span></div></div></div>`,
+        strat3: `<div class="h-2 bg-gradient-to-r from-cyber-red to-rose-500"></div><div class="p-6"><div class="flex items-center justify-between mb-4"><h3 class="font-bold text-lg text-white">Стратегия «Высокий Риск»</h3><span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-red">Высокий Риск</span></div><p class="text-gray-400 text-sm leading-relaxed mb-4">Агрессивный подход для опытных игроков. Большое количество мин (7-10) с открытием 1-2 ячеек. Множители x3-x10+ с первого клика. Требует железной дисциплины и строгого лимита потерь.</p><div class="glass-strong rounded-xl p-4 space-y-2"><div class="flex justify-between text-sm"><span class="text-gray-500">Мины:</span><span class="text-white font-medium">7-10</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Открывать ячеек:</span><span class="text-white font-medium">1-2</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Риск-профиль:</span><span class="text-cyber-red font-medium">Высокий</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Банкролл:</span><span class="text-white font-medium">x50 от ставки</span></div></div></div>`,
+        tabTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-lg'>📊</span> Mines vs Другие Игры — Сравнительная Таблица",
+        tabDesc: "Объективное сравнение ключевых параметров популярных краш-игр. Данные основаны на официальной документации провайдеров.",
+        tabTable: `<table class="comparison-table w-full text-sm text-left min-w-[600px]"><thead><tr><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Параметр</th><th class="px-6 py-4 font-semibold text-cyber-green border-b border-cyber-border">Mines ⭐</th><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Aviator</th><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Plinko</th><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Dice</th></tr></thead><tbody><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">RTP</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">97.00%</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">97.00%</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">96.00%</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">98.00%</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Макс. множитель</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">x24,750</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x100+</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x1,000</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x9,900</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Контроль рисков</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">Полный</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Частичный</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Низкий</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Полный</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Provably Fair</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">✅ Да</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ Да</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ Да</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ Да</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Темп игры</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">Свободный</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Быстрый</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Быстрый</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Свободный</td></tr><tr><td class="px-6 py-4 text-gray-400 font-medium">Аналитический компонент</td><td class="px-6 py-4 text-cyber-green font-semibold">Высокий ★★★</td><td class="px-6 py-4 text-gray-300">Средний ★★</td><td class="px-6 py-4 text-gray-300">Низкий ★</td><td class="px-6 py-4 text-gray-300">Средний ★★</td></tr></tbody></table>`,
+        pfTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-lg'>🔐</span> Технология Provably Fair и RTP",
+        pf1: `<h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2"><span class="text-cyber-green">🛡️</span> Provably Fair</h3><p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Provably Fair — это криптографический протокол, гарантирующий честность каждого раунда Mines. Перед началом игры сервер генерирует хеш (SHA-256) расположения мин. Вы получаете его до старта и можете проверить после.</p><div class="glass-strong rounded-xl p-3 font-mono text-xs text-gray-500 break-all mt-auto border border-cyber-green/20">SHA-256: e3b0c44298fc1c14...</div>`,
+        pf2: `<h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2"><span class="text-cyber-blue">📈</span> RTP 97%</h3><p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">RTP (Return to Player) — статистический показатель возврата. В Mines он составляет 97%. Это значит, что из 1000₽ ставок возвращается в среднем 970₽.</p><div class="glass-strong rounded-xl p-5 mt-auto border border-cyber-blue/20"><div class="flex items-center justify-between mb-3"><span class="text-sm text-gray-400">Возврат игрокам</span><span class="text-lg font-bold text-cyber-green">97.00%</span></div><div class="w-full h-3 bg-white/5 rounded-full overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-cyber-green to-emerald-500" style="width:97%"></div></div><div class="flex justify-between mt-2 text-xs text-gray-500"><span>0%</span><span>House Edge: 3%</span><span>100%</span></div></div>`,
+        pf3: `<h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2"><span class="text-cyber-purple">⚙️</span> Сертификация RNG</h3><p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Алгоритм генерации случайных чисел (RNG) регулярно проходит независимый аудит. Это гарантирует отсутствие паттернов и 100% случайный результат при открытии ячеек.</p><div class="glass-strong rounded-xl p-4 mt-auto border border-cyber-purple/20 flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-cyber-purple/20 flex items-center justify-center text-sm">📜</div><div><h4 class="text-white font-bold text-xs uppercase">Аудит пройден</h4><p class="text-[10px] text-gray-500 mt-0.5">Защита от предиктов</p></div></div>`,
+        apkTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-lg'>📱</span> Скачать Mines APK",
+        apkContent: `<p class="text-gray-400 text-sm leading-relaxed mb-6">Мобильная версия Mines доступна для Android через APK-файл. Установка позволяет играть в Mines с оптимизированным интерфейсом, push-уведомлениями о бонусах и стабильным соединением.</p><div class="glass-strong rounded-xl p-4 space-y-3 mb-6"><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">1</div><div><p class="text-sm font-medium text-white">Перейдите на официальный сайт платформы</p><p class="text-xs text-gray-500 mt-0.5">Используйте только проверенные источники</p></div></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">2</div><div><p class="text-sm font-medium text-white">Скачайте APK из раздела «Мобильное приложение»</p><p class="text-xs text-gray-500 mt-0.5">Размер файла: ~25-40 MB</p></div></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">3</div><div><p class="text-sm font-medium text-white">Разрешите установку из неизвестных источников</p><p class="text-xs text-gray-500 mt-0.5">Настройки → Безопасность → Неизвестные источники</p></div></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">4</div><div><p class="text-sm font-medium text-white">Установите и запустите Mines APK</p><p class="text-xs text-gray-500 mt-0.5">Требуется Android 6.0+</p></div></div></div><div class="flex flex-wrap gap-3"><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> Android 6.0+</div><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> Размер: ~30 MB</div><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> Бесплатно</div><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> Демо-режим</div></div>`,
+        faqTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-lg'>❓</span> Часто Задаваемые Вопросы (FAQ)",
+        faq1: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Что такое Mines и как в неё играть?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">Mines — это краш-игра на основе минного поля. Игрок открывает ячейки на сетке 5×5, стараясь найти звёзды и избежать мин. Каждая найденная звезда увеличивает множитель выигрыша. Вы можете забрать выигрыш в любой момент до того, как откроете мину. Количество мин настраивается от 1 до 24, что позволяет контролировать уровень риска.</div></div>`,
+        faq2: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Какой RTP у игры Mines?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">RTP (Return to Player) игры Mines составляет <strong class="text-white">97%</strong>. Это один из лучших показателей среди краш-игр. Это означает, что в долгосрочной перспективе из каждых 100 единиц ставок игрокам возвращается в среднем 97 единиц. House Edge составляет всего 3%.</div></div>`,
+        faq3: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Можно ли играть в Mines бесплатно в демо-режиме?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">Да, большинство платформ предоставляют <strong class="text-white">демо-режим Mines</strong> без регистрации. Это позволяет изучить механику игры, протестировать стратегии и понять математическую модель без финансовых рисков. Демо-версия использует виртуальные кредиты и полностью повторяет алгоритм реальной игры.</div></div>`,
+        faq4: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Что такое Provably Fair в Mines?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed"><strong class="text-white">Provably Fair</strong> — это криптографический протокол, который позволяет игроку математически проверить честность каждого раунда. Используется хеширование серверного (Server Seed) и клиентского (Client Seed) ключей через алгоритм SHA-256. Это полностью исключает манипуляции со стороны платформы и делает Mines одной из самых прозрачных игр.</div></div>`,
+        faq5: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Какая лучшая стратегия для Mines?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">Не существует стратегии, гарантирующей выигрыш в Mines. Однако аналитический подход <strong class="text-white">«Малые ставки»</strong> (3 мины, открытие 3-4 ячеек) считается наименее рискованным. Стратегия <strong class="text-white">Мартингейл</strong> помогает управлять банкроллом при серии проигрышей. Подход <strong class="text-white">High Risk</strong> (7+ мин) подходит опытным игрокам с крупным банкроллом.</div></div>`,
+        footerAbout: `<div class="flex items-center gap-2 mb-3"><div class="w-7 h-7 rounded-lg bg-gradient-to-br from-cyber-green to-cyber-blue flex items-center justify-center font-bold text-cyber-bg text-xs">M</div><span class="font-bold text-white">Mines<span class="text-cyber-green">.Guide</span></span></div><p class="text-xs text-gray-500 leading-relaxed">Аналитический ресурс, посвящённый игре Mines. Обзоры, стратегии, технический разбор и демо-режим.</p>`,
+        footerNav: `<h4 class="font-semibold text-sm text-white mb-3">Навигация</h4><nav class="space-y-2 text-xs text-gray-500"><a href="#how-to-play" class="block hover:text-cyber-green transition">Как играть</a><a href="#signal-bot" class="block hover:text-cyber-green transition">Генератор сигналов</a><a href="#strategies" class="block hover:text-cyber-green transition">Стратегии Mines</a><a href="#provably-fair" class="block hover:text-cyber-green transition">Provably Fair</a><a href="#faq" class="block hover:text-cyber-green transition">FAQ</a></nav>`,
+        footerLegal: `<h4 class="font-semibold text-sm text-white mb-3">Информация</h4><div class="space-y-2 text-xs text-gray-500"><p>Контент предназначен для лиц 18+</p><p>Играйте ответственно</p><p>Данный сайт не является оператором азартных игр</p></div>`,
+        footerCopy: `<p class="text-xs text-gray-600">© 2025 Mines.Guide — Все права защищены</p><div class="flex items-center gap-4 text-xs text-gray-600"><span>18+</span><span>|</span><span>Играйте ответственно</span></div>`,
+        navBotHome: "Главная", navBotStrat: "Стратегии", navBotSig: "Сигналы", navBotApk: "APK"
+      },
+      en: {
+        navRules: "Rules", navSignals: "Signals", navStrategies: "Strategies", navFair: "Provably Fair", navFaq: "FAQ",
+        btnCasinoTop: "Go to Casino", serverStatus: "Servers: Online",
+        statOnline: "Game Servers: <span class='text-cyber-green font-semibold'>Online</span>",
+        statRtp: "RTP:", statPlaying: "Playing now:",
+        heroTitle: "<span class='gradient-text'>Mines</span> — Analytical Game Review, Strategies and Demo <span class='text-cyber-green'>2025</span>",
+        heroDesc: "The complete guide to the Mines game: from rules and math models to advanced risk management strategies. Demo mode, signal generator, and Provably Fair fairness check.",
+        btnPlay: "Play Now", btnLearn: "Learn Strategies",
+        htPTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-green to-emerald-600 flex items-center justify-center text-lg'>📖</span> How to Play Mines — Rules in 60 Seconds",
+        htP1: `<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-cyber-green/10 border border-cyber-green/20 flex items-center justify-center text-cyber-green font-bold text-lg">1</div><h3 class="font-bold text-lg text-white">Grid Setup</h3></div><p class="text-gray-400 text-sm leading-relaxed">Choose your bet size and the number of mines on the field (from 1 to 24). More mines mean higher multipliers per open cell, but also higher risk. Standard Mines field is a 5×5 grid with 25 cells.</p><ul class="mt-4 space-y-2 text-sm text-gray-400"><li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> Min mines: 1 (safe mode)</li><li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> Optimal: 3-5 mines for balance</li><li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> Max mines: 24 (maximum multiplier)</li></ul>`,
+        htP2: `<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center text-cyber-blue font-bold text-lg">2</div><h3 class="font-bold text-lg text-white">Opening Cells</h3></div><p class="text-gray-400 text-sm leading-relaxed">Click on cells one by one. Under each is a star (win) or a mine (loss). Each revealed star increases your current multiplier. Mines strategy is built on choosing the optimal moment to stop.</p><ul class="mt-4 space-y-2 text-sm text-gray-400"><li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> ⭐ Star = multiplier grows</li><li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> 💣 Mine = bet lost</li><li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> Multiplier calculates dynamically</li></ul>`,
+        htP3: `<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-cyber-purple/10 border border-cyber-purple/20 flex items-center justify-center text-cyber-purple font-bold text-lg">3</div><h3 class="font-bold text-lg text-white">Cashout Winnings</h3></div><p class="text-gray-400 text-sm leading-relaxed">Press "Cashout" at any moment to lock in profits. This is the key element of Mines — balancing greed and analytical control. Experienced players use predetermined exit points.</p><ul class="mt-4 space-y-2 text-sm text-gray-400"><li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> Cashout available after first star</li><li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> Auto-cashout sets at target multiplier</li><li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> Discipline = key to profit</li></ul>`,
+        sigTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-purple to-pink-600 flex items-center justify-center text-lg shadow-lg shadow-cyber-purple/30'>🔮</span> PF Analyzer — Mines Signal Generator",
+        sigAiVer: "AI PREDICTOR v4.0", sigAiActive: "Neural Net Active",
+        sigMineCount: "Mine Count", sig1mine: "1 mine", sig3mine: "3 mines", sig5mine: "5 mines", sig7mine: "7 mines",
+        sigAccuracy: "Forecast Accuracy", sigBtnAnalyze: "Analyze Grid", sigBtnCasino: "Go to Casino",
+        stratTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-blue to-indigo-600 flex items-center justify-center text-lg'>🧠</span> Best Mines Strategies",
+        stratDesc: "Analytical approach to risk management in Mines. Each strategy has its own reward/risk profile. No strategy guarantees a win — use bankroll management.",
+        strat1: `<div class="h-2 bg-gradient-to-r from-cyber-yellow to-orange-500"></div><div class="p-6"><div class="flex items-center justify-between mb-4"><h3 class="font-bold text-lg text-white">"Martingale" Strategy</h3><span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-yellow">Medium Risk</span></div><p class="text-gray-400 text-sm leading-relaxed mb-4">Classic approach to bankroll management in Mines. Double the bet after every loss, return to base after a win. Math logic: one win compensates for a losing streak.</p><div class="glass-strong rounded-xl p-4 space-y-2"><div class="flex justify-between text-sm"><span class="text-gray-500">Mines:</span><span class="text-white font-medium">3</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Cells to open:</span><span class="text-white font-medium">2-3</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Risk profile:</span><span class="text-cyber-yellow font-medium">Medium</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Bankroll:</span><span class="text-white font-medium">x20 of bet</span></div></div></div>`,
+        strat2: `<div class="h-2 bg-gradient-to-r from-cyber-green to-emerald-500"></div><div class="p-6"><div class="flex items-center justify-between mb-4"><h3 class="font-bold text-lg text-white">"Small Bets" Strategy</h3><span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-green">Low Risk</span></div><p class="text-gray-400 text-sm leading-relaxed mb-4">Conservative method for long sessions. Minimum mines, opening 3-4 safe cells and securing profit. Ideal Mines strategy for beginners learning mechanics.</p><div class="glass-strong rounded-xl p-4 space-y-2"><div class="flex justify-between text-sm"><span class="text-gray-500">Mines:</span><span class="text-white font-medium">1-3</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Cells to open:</span><span class="text-white font-medium">3-4</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Risk profile:</span><span class="text-cyber-green font-medium">Low</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Bankroll:</span><span class="text-white font-medium">x10 of bet</span></div></div></div>`,
+        strat3: `<div class="h-2 bg-gradient-to-r from-cyber-red to-rose-500"></div><div class="p-6"><div class="flex items-center justify-between mb-4"><h3 class="font-bold text-lg text-white">"High Risk" Strategy</h3><span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-red">High Risk</span></div><p class="text-gray-400 text-sm leading-relaxed mb-4">Aggressive approach for experienced players. Large number of mines (7-10) opening 1-2 cells. Multipliers x3-x10+ from the first click. Requires iron discipline.</p><div class="glass-strong rounded-xl p-4 space-y-2"><div class="flex justify-between text-sm"><span class="text-gray-500">Mines:</span><span class="text-white font-medium">7-10</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Cells to open:</span><span class="text-white font-medium">1-2</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Risk profile:</span><span class="text-cyber-red font-medium">High</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Bankroll:</span><span class="text-white font-medium">x50 of bet</span></div></div></div>`,
+        tabTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-lg'>📊</span> Mines vs Other Games — Comparison",
+        tabDesc: "Objective comparison of key parameters of popular crash games. Data based on official provider documentation.",
+        tabTable: `<table class="comparison-table w-full text-sm text-left min-w-[600px]"><thead><tr><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Parameter</th><th class="px-6 py-4 font-semibold text-cyber-green border-b border-cyber-border">Mines ⭐</th><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Aviator</th><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Plinko</th><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Dice</th></tr></thead><tbody><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">RTP</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">97.00%</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">97.00%</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">96.00%</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">98.00%</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Max Multiplier</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">x24,750</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x100+</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x1,000</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x9,900</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Risk Control</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">Full</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Partial</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Low</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Full</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Provably Fair</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">✅ Yes</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ Yes</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ Yes</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ Yes</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Game Pace</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">Free</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Fast</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Fast</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Free</td></tr><tr><td class="px-6 py-4 text-gray-400 font-medium">Analytical Component</td><td class="px-6 py-4 text-cyber-green font-semibold">High ★★★</td><td class="px-6 py-4 text-gray-300">Medium ★★</td><td class="px-6 py-4 text-gray-300">Low ★</td><td class="px-6 py-4 text-gray-300">Medium ★★</td></tr></tbody></table>`,
+        pfTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-lg'>🔐</span> Provably Fair & RTP Technology",
+        pf1: `<h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2"><span class="text-cyber-green">🛡️</span> Provably Fair</h3><p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Provably Fair is a cryptographic protocol ensuring fairness of each Mines round. Before starting, the server generates a hash (SHA-256) of the mine placement. You receive it beforehand and can verify it after.</p><div class="glass-strong rounded-xl p-3 font-mono text-xs text-gray-500 break-all mt-auto border border-cyber-green/20">SHA-256: e3b0c44298fc1c14...</div>`,
+        pf2: `<h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2"><span class="text-cyber-blue">📈</span> RTP 97%</h3><p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">RTP (Return to Player) is a statistical return metric. In Mines, it's 97%. This means from $1000 in bets, $970 is returned on average.</p><div class="glass-strong rounded-xl p-5 mt-auto border border-cyber-blue/20"><div class="flex items-center justify-between mb-3"><span class="text-sm text-gray-400">Return to players</span><span class="text-lg font-bold text-cyber-green">97.00%</span></div><div class="w-full h-3 bg-white/5 rounded-full overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-cyber-green to-emerald-500" style="width:97%"></div></div><div class="flex justify-between mt-2 text-xs text-gray-500"><span>0%</span><span>House Edge: 3%</span><span>100%</span></div></div>`,
+        pf3: `<h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2"><span class="text-cyber-purple">⚙️</span> RNG Certified</h3><p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">The Random Number Generator algorithm regularly undergoes independent audits. This guarantees the absence of patterns and a 100% random result when opening cells.</p><div class="glass-strong rounded-xl p-4 mt-auto border border-cyber-purple/20 flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-cyber-purple/20 flex items-center justify-center text-sm">📜</div><div><h4 class="text-white font-bold text-xs uppercase">Audit Passed</h4><p class="text-[10px] text-gray-500 mt-0.5">Prediction protection</p></div></div>`,
+        apkTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-lg'>📱</span> Download Mines APK",
+        apkContent: `<p class="text-gray-400 text-sm leading-relaxed mb-6">The mobile version of Mines is available for Android via APK file. Installation allows you to play Mines with an optimized interface, push notifications, and a stable connection.</p><div class="glass-strong rounded-xl p-4 space-y-3 mb-6"><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">1</div><div><p class="text-sm font-medium text-white">Visit the official platform site</p><p class="text-xs text-gray-500 mt-0.5">Use only trusted sources</p></div></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">2</div><div><p class="text-sm font-medium text-white">Download APK from "Mobile App" section</p><p class="text-xs text-gray-500 mt-0.5">File size: ~25-40 MB</p></div></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">3</div><div><p class="text-sm font-medium text-white">Allow installation from unknown sources</p><p class="text-xs text-gray-500 mt-0.5">Settings → Security → Unknown sources</p></div></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">4</div><div><p class="text-sm font-medium text-white">Install and launch Mines APK</p><p class="text-xs text-gray-500 mt-0.5">Requires Android 6.0+</p></div></div></div><div class="flex flex-wrap gap-3"><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> Android 6.0+</div><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> Size: ~30 MB</div><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> Free</div><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> Demo Mode</div></div>`,
+        faqTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-lg'>❓</span> Frequently Asked Questions (FAQ)",
+        faq1: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">What is Mines and how to play it?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">Mines is a crash game based on a minefield. The player opens cells on a 5×5 grid, trying to find stars and avoid mines. Every star found increases the win multiplier. You can take your winnings at any time before opening a mine. The number of mines is adjustable from 1 to 24, allowing you to control the risk level.</div></div>`,
+        faq2: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">What is the RTP of Mines?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">The RTP (Return to Player) of Mines is <strong class="text-white">97%</strong>. This is one of the best rates among crash games. It means that in the long run, out of every 100 units bet, an average of 97 units are returned to players. The House Edge is only 3%.</div></div>`,
+        faq3: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Can I play Mines for free in demo mode?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">Yes, most platforms provide a <strong class="text-white">Mines demo mode</strong> without registration. This allows you to explore the game mechanics, test strategies, and understand the mathematical model without financial risks. Demo version uses virtual credits and fully replicates the real game algorithm.</div></div>`,
+        faq4: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">What is Provably Fair in Mines?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed"><strong class="text-white">Provably Fair</strong> is a cryptographic protocol that allows the player to mathematically verify the fairness of each round. It uses SHA-256 hashing of the Server Seed and Client Seed. This completely eliminates manipulation by the platform and makes Mines highly transparent.</div></div>`,
+        faq5: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">What is the best strategy for Mines?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">There is no strategy that guarantees a win in Mines. However, the analytical <strong class="text-white">"Small Bets"</strong> approach (3 mines, opening 3-4 cells) is considered the least risky. The <strong class="text-white">Martingale</strong> strategy helps manage bankroll during a losing streak. The <strong class="text-white">High Risk</strong> approach (7+ mines) is suitable for experienced players.</div></div>`,
+        footerAbout: `<div class="flex items-center gap-2 mb-3"><div class="w-7 h-7 rounded-lg bg-gradient-to-br from-cyber-green to-cyber-blue flex items-center justify-center font-bold text-cyber-bg text-xs">M</div><span class="font-bold text-white">Mines<span class="text-cyber-green">.Guide</span></span></div><p class="text-xs text-gray-500 leading-relaxed">Analytical resource dedicated to the Mines game. Reviews, strategies, technical breakdowns, and demo mode.</p>`,
+        footerNav: `<h4 class="font-semibold text-sm text-white mb-3">Navigation</h4><nav class="space-y-2 text-xs text-gray-500"><a href="#how-to-play" class="block hover:text-cyber-green transition">How to play</a><a href="#signal-bot" class="block hover:text-cyber-green transition">Signal Generator</a><a href="#strategies" class="block hover:text-cyber-green transition">Mines Strategies</a><a href="#provably-fair" class="block hover:text-cyber-green transition">Provably Fair</a><a href="#faq" class="block hover:text-cyber-green transition">FAQ</a></nav>`,
+        footerLegal: `<h4 class="font-semibold text-sm text-white mb-3">Information</h4><div class="space-y-2 text-xs text-gray-500"><p>Content is intended for 18+</p><p>Play responsibly</p><p>This site is not a gambling operator</p></div>`,
+        footerCopy: `<p class="text-xs text-gray-600">© 2025 Mines.Guide — All Rights Reserved</p><div class="flex items-center gap-4 text-xs text-gray-600"><span>18+</span><span>|</span><span>Play Responsibly</span></div>`,
+        navBotHome: "Home", navBotStrat: "Strategies", navBotSig: "Signals", navBotApk: "APK"
+      },
+      hi: {
+        navRules: "नियम", navSignals: "संकेत", navStrategies: "रणनीतियाँ", navFair: "Provably Fair", navFaq: "FAQ",
+        btnCasinoTop: "कैसीनो में जाएं", serverStatus: "सर्वर: ऑनलाइन",
+        statOnline: "गेम सर्वर: <span class='text-cyber-green font-semibold'>ऑनलाइन</span>",
+        statRtp: "RTP:", statPlaying: "अभी खेल रहे हैं:",
+        heroTitle: "<span class='gradient-text'>Mines</span> — विश्लेषणात्मक गेम समीक्षा, रणनीतियाँ और डेमो <span class='text-cyber-green'>2025</span>",
+        heroDesc: "Mines गेम की पूरी गाइड: नियमों और गणितीय मॉडल से लेकर उन्नत जोखिम प्रबंधन रणनीतियों तक। डेमो मोड, सिग्नल जनरेटर, और निष्पक्षता की जांच।",
+        btnPlay: "अभी खेलें", btnLearn: "रणनीतियाँ सीखें",
+        htPTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-green to-emerald-600 flex items-center justify-center text-lg'>📖</span> Mines कैसे खेलें — 60 सेकंड में नियम",
+        htP1: `<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-cyber-green/10 border border-cyber-green/20 flex items-center justify-center text-cyber-green font-bold text-lg">1</div><h3 class="font-bold text-lg text-white">ग्रिड सेटअप</h3></div><p class="text-gray-400 text-sm leading-relaxed">अपनी बेट का आकार और मैदान पर खदानों की संख्या चुनें (1 से 24 तक)। अधिक खदानों का मतलब है उच्च गुणक, लेकिन उच्च जोखिम भी। मानक ग्रिड 5×5 है।</p><ul class="mt-4 space-y-2 text-sm text-gray-400"><li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> न्यूनतम खदानें: 1</li><li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> इष्टतम: 3-5 खदानें</li><li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> अधिकतम खदानें: 24</li></ul>`,
+        htP2: `<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center text-cyber-blue font-bold text-lg">2</div><h3 class="font-bold text-lg text-white">सेल्स खोलना</h3></div><p class="text-gray-400 text-sm leading-relaxed">एक-एक करके सेल्स पर क्लिक करें। प्रत्येक के नीचे एक तारा (जीत) या खदान (हार) होती है। हर तारा आपका गुणक बढ़ाता है।</p><ul class="mt-4 space-y-2 text-sm text-gray-400"><li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> ⭐ तारा = गुणक बढ़ता है</li><li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> 💣 खदान = बेट हार गए</li><li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> गुणक गतिशील रूप से गणना करता है</li></ul>`,
+        htP3: `<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-cyber-purple/10 border border-cyber-purple/20 flex items-center justify-center text-cyber-purple font-bold text-lg">3</div><h3 class="font-bold text-lg text-white">कैशआउट</h3></div><p class="text-gray-400 text-sm leading-relaxed">मुनाफा लॉक करने के लिए किसी भी क्षण "कैशआउट" दबाएं। अनुभवी खिलाड़ी पूर्व निर्धारित निकास बिंदुओं का उपयोग करते हैं।</p><ul class="mt-4 space-y-2 text-sm text-gray-400"><li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> पहले तारे के बाद कैशआउट उपलब्ध</li><li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> ऑटो-कैशआउट लक्ष्य निर्धारित करें</li><li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> अनुशासन = लाभ की कुंजी</li></ul>`,
+        sigTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-purple to-pink-600 flex items-center justify-center text-lg shadow-lg shadow-cyber-purple/30'>🔮</span> PF विश्लेषक — Mines सिग्नल जनरेटर",
+        sigAiVer: "AI PREDICTOR v4.0", sigAiActive: "न्यूरल नेट सक्रिय",
+        sigMineCount: "खदानों की संख्या", sig1mine: "1 खदान", sig3mine: "3 खदानें", sig5mine: "5 खदानें", sig7mine: "7 खदानें",
+        sigAccuracy: "पूर्वानुमान सटीकता", sigBtnAnalyze: "ग्रिड का विश्लेषण करें", sigBtnCasino: "कैसीनो में जाएं",
+        stratTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-blue to-indigo-600 flex items-center justify-center text-lg'>🧠</span> सर्वश्रेष्ठ Mines रणनीतियाँ",
+        stratDesc: "Mines में जोखिम प्रबंधन के लिए विश्लेषणात्मक दृष्टिकोण। किसी भी रणनीति से जीत की गारंटी नहीं है — बैंकरोल प्रबंधन का उपयोग करें।",
+        strat1: `<div class="h-2 bg-gradient-to-r from-cyber-yellow to-orange-500"></div><div class="p-6"><div class="flex items-center justify-between mb-4"><h3 class="font-bold text-lg text-white">"मार्टिंगेल" रणनीति</h3><span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-yellow">मध्यम जोखिम</span></div><p class="text-gray-400 text-sm leading-relaxed mb-4">Mines में बैंकरोल प्रबंधन का क्लासिक दृष्टिकोण। हर हार के बाद बेट दोगुनी करें, जीत के बाद बेस पर वापस आएं।</p><div class="glass-strong rounded-xl p-4 space-y-2"><div class="flex justify-between text-sm"><span class="text-gray-500">खदानें:</span><span class="text-white font-medium">3</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">खोलने के लिए सेल्स:</span><span class="text-white font-medium">2-3</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">जोखिम प्रोफ़ाइल:</span><span class="text-cyber-yellow font-medium">मध्यम</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">बैंकरोल:</span><span class="text-white font-medium">बेट का x20</span></div></div></div>`,
+        strat2: `<div class="h-2 bg-gradient-to-r from-cyber-green to-emerald-500"></div><div class="p-6"><div class="flex items-center justify-between mb-4"><h3 class="font-bold text-lg text-white">"छोटे दांव" रणनीति</h3><span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-green">कम जोखिम</span></div><p class="text-gray-400 text-sm leading-relaxed mb-4">लंबे सत्रों के लिए रूढ़िवादी तरीका। न्यूनतम खदानें, 3-4 सुरक्षित सेल खोलना और लाभ सुरक्षित करना। शुरुआती लोगों के लिए आदर्श।</p><div class="glass-strong rounded-xl p-4 space-y-2"><div class="flex justify-between text-sm"><span class="text-gray-500">खदानें:</span><span class="text-white font-medium">1-3</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">खोलने के लिए सेल्स:</span><span class="text-white font-medium">3-4</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">जोखिम प्रोफ़ाइल:</span><span class="text-cyber-green font-medium">कम</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">बैंकरोल:</span><span class="text-white font-medium">बेट का x10</span></div></div></div>`,
+        strat3: `<div class="h-2 bg-gradient-to-r from-cyber-red to-rose-500"></div><div class="p-6"><div class="flex items-center justify-between mb-4"><h3 class="font-bold text-lg text-white">"उच्च जोखिम" रणनीति</h3><span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-red">उच्च जोखिम</span></div><p class="text-gray-400 text-sm leading-relaxed mb-4">अनुभवी खिलाड़ियों के लिए आक्रामक दृष्टिकोण। बड़ी संख्या में खदानें (7-10) 1-2 सेल खोलती हैं। लौह अनुशासन की आवश्यकता है।</p><div class="glass-strong rounded-xl p-4 space-y-2"><div class="flex justify-between text-sm"><span class="text-gray-500">खदानें:</span><span class="text-white font-medium">7-10</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">खोलने के लिए सेल्स:</span><span class="text-white font-medium">1-2</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">जोखिम प्रोफ़ाइल:</span><span class="text-cyber-red font-medium">उच्च</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">बैंकरोल:</span><span class="text-white font-medium">बेट का x50</span></div></div></div>`,
+        tabTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-lg'>📊</span> Mines बनाम अन्य गेम — तुलना",
+        tabDesc: "लोकप्रिय क्रैश गेम के प्रमुख मापदंडों की वस्तुनिष्ठ तुलना। डेटा आधिकारिक प्रदाता दस्तावेज़ों पर आधारित है।",
+        tabTable: `<table class="comparison-table w-full text-sm text-left min-w-[600px]"><thead><tr><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">पैरामीटर</th><th class="px-6 py-4 font-semibold text-cyber-green border-b border-cyber-border">Mines ⭐</th><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Aviator</th><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Plinko</th><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Dice</th></tr></thead><tbody><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">RTP</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">97.00%</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">97.00%</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">96.00%</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">98.00%</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">मैक्स मल्टीप्लायर</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">x24,750</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x100+</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x1,000</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x9,900</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">जोखिम नियंत्रण</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">पूर्ण</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">आंशिक</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">कम</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">पूर्ण</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Provably Fair</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">✅ हाँ</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ हाँ</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ हाँ</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ हाँ</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">गेम पेस</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">स्वतंत्र</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">तेज़</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">तेज़</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">स्वतंत्र</td></tr><tr><td class="px-6 py-4 text-gray-400 font-medium">विश्लेषणात्मक घटक</td><td class="px-6 py-4 text-cyber-green font-semibold">उच्च ★★★</td><td class="px-6 py-4 text-gray-300">मध्यम ★★</td><td class="px-6 py-4 text-gray-300">कम ★</td><td class="px-6 py-4 text-gray-300">मध्यम ★★</td></tr></tbody></table>`,
+        pfTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-lg'>🔐</span> Provably Fair और RTP",
+        pf1: `<h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2"><span class="text-cyber-green">🛡️</span> Provably Fair</h3><p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Provably Fair एक क्रिप्टोग्राफ़िक प्रोटोकॉल है जो प्रत्येक राउंड की निष्पक्षता सुनिश्चित करता है। शुरू करने से पहले, सर्वर खदान प्लेसमेंट का एक हैश (SHA-256) उत्पन्न करता है।</p><div class="glass-strong rounded-xl p-3 font-mono text-xs text-gray-500 break-all mt-auto border border-cyber-green/20">SHA-256: e3b0c44298fc1c14...</div>`,
+        pf2: `<h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2"><span class="text-cyber-blue">📈</span> RTP 97%</h3><p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">RTP (खिलाड़ी को वापसी) एक सांख्यिकीय वापसी मीट्रिक है। Mines में, यह 97% है। इसका मतलब है दांव में हर 1000 से, औसतन 970 वापस आ जाता है।</p><div class="glass-strong rounded-xl p-5 mt-auto border border-cyber-blue/20"><div class="flex items-center justify-between mb-3"><span class="text-sm text-gray-400">वापसी</span><span class="text-lg font-bold text-cyber-green">97.00%</span></div><div class="w-full h-3 bg-white/5 rounded-full overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-cyber-green to-emerald-500" style="width:97%"></div></div><div class="flex justify-between mt-2 text-xs text-gray-500"><span>0%</span><span>House Edge: 3%</span><span>100%</span></div></div>`,
+        pf3: `<h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2"><span class="text-cyber-purple">⚙️</span> RNG प्रमाणित</h3><p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">रैंडम नंबर जेनरेटर एल्गोरिदम नियमित रूप से स्वतंत्र ऑडिट से गुजरता है। यह सेल खोलते समय 100% यादृच्छिक परिणाम की गारंटी देता है।</p><div class="glass-strong rounded-xl p-4 mt-auto border border-cyber-purple/20 flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-cyber-purple/20 flex items-center justify-center text-sm">📜</div><div><h4 class="text-white font-bold text-xs uppercase">ऑडिट पास</h4><p class="text-[10px] text-gray-500 mt-0.5">भविष्यवाणी सुरक्षा</p></div></div>`,
+        apkTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-lg'>📱</span> Mines APK डाउनलोड करें",
+        apkContent: `<p class="text-gray-400 text-sm leading-relaxed mb-6">Mines का मोबाइल संस्करण Android के लिए APK के माध्यम से उपलब्ध है। इसे एक अनुकूलित इंटरफ़ेस और स्थिर कनेक्शन के साथ खेलें।</p><div class="glass-strong rounded-xl p-4 space-y-3 mb-6"><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">1</div><div><p class="text-sm font-medium text-white">आधिकारिक प्लेटफ़ॉर्म साइट पर जाएं</p><p class="text-xs text-gray-500 mt-0.5">केवल विश्वसनीय स्रोतों का उपयोग करें</p></div></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">2</div><div><p class="text-sm font-medium text-white">मोबाइल ऐप अनुभाग से APK डाउनलोड करें</p><p class="text-xs text-gray-500 mt-0.5">फ़ाइल आकार: ~25-40 MB</p></div></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">3</div><div><p class="text-sm font-medium text-white">अज्ञात स्रोतों से स्थापना की अनुमति दें</p><p class="text-xs text-gray-500 mt-0.5">सेटिंग्स → सुरक्षा</p></div></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">4</div><div><p class="text-sm font-medium text-white">Mines APK स्थापित करें और लॉन्च करें</p><p class="text-xs text-gray-500 mt-0.5">Android 6.0+ आवश्यक</p></div></div></div><div class="flex flex-wrap gap-3"><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> Android 6.0+</div><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> आकार: ~30 MB</div><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> मुफ़्त</div><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> डेमो मोड</div></div>`,
+        faqTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-lg'>❓</span> अक्सर पूछे जाने वाले प्रश्न (FAQ)",
+        faq1: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Mines क्या है और इसे कैसे खेलें?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">Mines एक क्रैश गेम है। खिलाड़ी 5×5 ग्रिड पर सेल खोलता है, सितारों को खोजने और खदानों से बचने की कोशिश करता है। खदानों की संख्या 1 से 24 तक समायोज्य है।</div></div>`,
+        faq2: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Mines का RTP क्या है?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">Mines का RTP <strong class="text-white">97%</strong> है। हाउस एज केवल 3% है।</div></div>`,
+        faq3: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">क्या मैं डेमो मोड में मुफ़्त में Mines खेल सकता हूँ?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">हाँ, अधिकांश प्लेटफ़ॉर्म बिना पंजीकरण के डेमो मोड प्रदान करते हैं। यह आपको बिना वित्तीय जोखिम के खेल यांत्रिकी का पता लगाने की अनुमति देता है।</div></div>`,
+        faq4: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Mines में Provably Fair क्या है?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed"><strong class="text-white">Provably Fair</strong> एक क्रिप्टोग्राफ़िक प्रोटोकॉल है जो आपको गणितीय रूप से प्रत्येक दौर की निष्पक्षता को सत्यापित करने की अनुमति देता है।</div></div>`,
+        faq5: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Mines के लिए सबसे अच्छी रणनीति क्या है?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">Mines में जीत की गारंटी देने वाली कोई रणनीति नहीं है। हालाँकि, विश्लेषणात्मक "छोटे दांव" दृष्टिकोण को कम से कम जोखिम भरा माना जाता है।</div></div>`,
+        footerAbout: `<div class="flex items-center gap-2 mb-3"><div class="w-7 h-7 rounded-lg bg-gradient-to-br from-cyber-green to-cyber-blue flex items-center justify-center font-bold text-cyber-bg text-xs">M</div><span class="font-bold text-white">Mines<span class="text-cyber-green">.Guide</span></span></div><p class="text-xs text-gray-500 leading-relaxed">Mines गेम को समर्पित विश्लेषणात्मक संसाधन। समीक्षा, रणनीतियाँ और डेमो मोड।</p>`,
+        footerNav: `<h4 class="font-semibold text-sm text-white mb-3">नेविगेशन</h4><nav class="space-y-2 text-xs text-gray-500"><a href="#how-to-play" class="block hover:text-cyber-green transition">कैसे खेलें</a><a href="#signal-bot" class="block hover:text-cyber-green transition">सिग्नल जनरेटर</a><a href="#strategies" class="block hover:text-cyber-green transition">रणनीतियाँ</a><a href="#provably-fair" class="block hover:text-cyber-green transition">Provably Fair</a><a href="#faq" class="block hover:text-cyber-green transition">FAQ</a></nav>`,
+        footerLegal: `<h4 class="font-semibold text-sm text-white mb-3">जानकारी</h4><div class="space-y-2 text-xs text-gray-500"><p>सामग्री 18+ के लिए है</p><p>जिम्मेदारी से खेलें</p><p>यह साइट जुआ ऑपरेटर नहीं है</p></div>`,
+        footerCopy: `<p class="text-xs text-gray-600">© 2025 Mines.Guide — सर्वाधिकार सुरक्षित</p><div class="flex items-center gap-4 text-xs text-gray-600"><span>18+</span><span>|</span><span>जिम्मेदारी से खेलें</span></div>`,
+        navBotHome: "मुख्य पृष्ठ", navBotStrat: "रणनीतियाँ", navBotSig: "सिग्नल", navBotApk: "APK"
+      },
+      tl: {
+        navRules: "Mga Panuntunan", navSignals: "Mga Signal", navStrategies: "Istratehiya", navFair: "Provably Fair", navFaq: "FAQ",
+        btnCasinoTop: "Pumunta sa Casino", serverStatus: "Servers: Online",
+        statOnline: "Game Servers: <span class='text-cyber-green font-semibold'>Online</span>",
+        statRtp: "RTP:", statPlaying: "Naglalaro ngayon:",
+        heroTitle: "<span class='gradient-text'>Mines</span> — Pagsusuring Analitikal, Mga Istratehiya at Demo <span class='text-cyber-green'>2025</span>",
+        heroDesc: "Ang kumpletong gabay sa larong Mines: mula sa mga panuntunan at modelo hanggang sa mga advanced na diskarte. Demo mode, signal generator, at Provably Fair.",
+        btnPlay: "Maglaro Ngayon", btnLearn: "Alamin ang Istratehiya",
+        htPTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-green to-emerald-600 flex items-center justify-center text-lg'>📖</span> Paano Maglaro ng Mines",
+        htP1: `<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-cyber-green/10 border border-cyber-green/20 flex items-center justify-center text-cyber-green font-bold text-lg">1</div><h3 class="font-bold text-lg text-white">Grid Setup</h3></div><p class="text-gray-400 text-sm leading-relaxed">Piliin ang laki ng iyong taya at ang bilang ng mga mina (mula 1 hanggang 24). Ang karaniwang grid ng Mines ay 5×5 na may 25 cells.</p><ul class="mt-4 space-y-2 text-sm text-gray-400"><li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> Min mina: 1 (ligtas na mode)</li><li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> Pinakamainam: 3-5 mina</li><li class="flex items-start gap-2"><span class="text-cyber-green mt-0.5">✦</span> Max mina: 24</li></ul>`,
+        htP2: `<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-cyber-blue/10 border border-cyber-blue/20 flex items-center justify-center text-cyber-blue font-bold text-lg">2</div><h3 class="font-bold text-lg text-white">Pagbubukas ng Cells</h3></div><p class="text-gray-400 text-sm leading-relaxed">Mag-click sa mga cell isa-isa. Sa ilalim ng bawat isa ay isang bituin (panalo) o isang mina (talo). Pinapataas ng bawat bituin ang multiplier.</p><ul class="mt-4 space-y-2 text-sm text-gray-400"><li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> ⭐ Bituin = tataas ang multiplier</li><li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> 💣 Mina = talo ang taya</li><li class="flex items-start gap-2"><span class="text-cyber-blue mt-0.5">✦</span> Dinamikong multiplier</li></ul>`,
+        htP3: `<div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 rounded-xl bg-cyber-purple/10 border border-cyber-purple/20 flex items-center justify-center text-cyber-purple font-bold text-lg">3</div><h3 class="font-bold text-lg text-white">Cashout</h3></div><p class="text-gray-400 text-sm leading-relaxed">Pindutin ang "Cashout" anumang oras para makuha ang panalo. Disiplina ang susi sa pagkita.</p><ul class="mt-4 space-y-2 text-sm text-gray-400"><li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> Available pagkatapos ng unang bituin</li><li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> Auto-cashout setting</li><li class="flex items-start gap-2"><span class="text-cyber-purple mt-0.5">✦</span> Disiplina = panalo</li></ul>`,
+        sigTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-purple to-pink-600 flex items-center justify-center text-lg shadow-lg shadow-cyber-purple/30'>🔮</span> PF Analyzer — Mines Signal Generator",
+        sigAiVer: "AI PREDICTOR v4.0", sigAiActive: "Neural Net Aktibo",
+        sigMineCount: "Bilang ng Mina", sig1mine: "1 mina", sig3mine: "3 mina", sig5mine: "5 mina", sig7mine: "7 mina",
+        sigAccuracy: "Katumpakan", sigBtnAnalyze: "Suriin ang Grid", sigBtnCasino: "Pumunta sa Casino",
+        stratTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyber-blue to-indigo-600 flex items-center justify-center text-lg'>🧠</span> Pinakamahusay na Istratehiya",
+        stratDesc: "Analitikal na pamamahala ng panganib. Walang istratehiyang garantisadong panalo — gamitin ang bankroll management.",
+        strat1: `<div class="h-2 bg-gradient-to-r from-cyber-yellow to-orange-500"></div><div class="p-6"><div class="flex items-center justify-between mb-4"><h3 class="font-bold text-lg text-white">"Martingale" Istratehiya</h3><span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-yellow">Katamtaman</span></div><p class="text-gray-400 text-sm leading-relaxed mb-4">Doblehin ang taya pagkatapos matalo, bumalik sa base pagkatapos manalo.</p><div class="glass-strong rounded-xl p-4 space-y-2"><div class="flex justify-between text-sm"><span class="text-gray-500">Mina:</span><span class="text-white font-medium">3</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Buksan:</span><span class="text-white font-medium">2-3</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Panganib:</span><span class="text-cyber-yellow font-medium">Katamtaman</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Bankroll:</span><span class="text-white font-medium">x20 ng taya</span></div></div></div>`,
+        strat2: `<div class="h-2 bg-gradient-to-r from-cyber-green to-emerald-500"></div><div class="p-6"><div class="flex items-center justify-between mb-4"><h3 class="font-bold text-lg text-white">"Small Bets" Istratehiya</h3><span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-green">Mababa</span></div><p class="text-gray-400 text-sm leading-relaxed mb-4">Konserbatibong paraan. Pinakamababa ang mina, nagbubukas ng 3-4 na ligtas na cell.</p><div class="glass-strong rounded-xl p-4 space-y-2"><div class="flex justify-between text-sm"><span class="text-gray-500">Mina:</span><span class="text-white font-medium">1-3</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Buksan:</span><span class="text-white font-medium">3-4</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Panganib:</span><span class="text-cyber-green font-medium">Mababa</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Bankroll:</span><span class="text-white font-medium">x10 ng taya</span></div></div></div>`,
+        strat3: `<div class="h-2 bg-gradient-to-r from-cyber-red to-rose-500"></div><div class="p-6"><div class="flex items-center justify-between mb-4"><h3 class="font-bold text-lg text-white">"High Risk" Istratehiya</h3><span class="text-xs glass-strong rounded-full px-3 py-1 text-cyber-red">Mataas</span></div><p class="text-gray-400 text-sm leading-relaxed mb-4">Agresibong diskarte. Maraming mina (7-10) nagbubukas ng 1-2 cell. Nangangailangan ng disiplina.</p><div class="glass-strong rounded-xl p-4 space-y-2"><div class="flex justify-between text-sm"><span class="text-gray-500">Mina:</span><span class="text-white font-medium">7-10</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Buksan:</span><span class="text-white font-medium">1-2</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Panganib:</span><span class="text-cyber-red font-medium">Mataas</span></div><div class="flex justify-between text-sm"><span class="text-gray-500">Bankroll:</span><span class="text-white font-medium">x50 ng taya</span></div></div></div>`,
+        tabTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-lg'>📊</span> Mines vs Ibang Laro",
+        tabDesc: "Paghahambing ng mga sikat na crash games base sa opisyal na datos.",
+        tabTable: `<table class="comparison-table w-full text-sm text-left min-w-[600px]"><thead><tr><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Parameter</th><th class="px-6 py-4 font-semibold text-cyber-green border-b border-cyber-border">Mines ⭐</th><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Aviator</th><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Plinko</th><th class="px-6 py-4 font-semibold text-gray-300 border-b border-cyber-border">Dice</th></tr></thead><tbody><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">RTP</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">97.00%</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">97.00%</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">96.00%</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">98.00%</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Max Multiplier</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">x24,750</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x100+</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x1,000</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">x9,900</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Risk Control</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">Buo</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Bahagya</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Mababa</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Buo</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Provably Fair</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">✅ Oo</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ Oo</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ Oo</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">✅ Oo</td></tr><tr><td class="px-6 py-4 text-gray-400 border-b border-cyber-border font-medium">Bilis ng Laro</td><td class="px-6 py-4 text-cyber-green font-semibold border-b border-cyber-border">Libre</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Mabilis</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Mabilis</td><td class="px-6 py-4 text-gray-300 border-b border-cyber-border">Libre</td></tr><tr><td class="px-6 py-4 text-gray-400 font-medium">Analitikal</td><td class="px-6 py-4 text-cyber-green font-semibold">Mataas ★★★</td><td class="px-6 py-4 text-gray-300">Katamtaman ★★</td><td class="px-6 py-4 text-gray-300">Mababa ★</td><td class="px-6 py-4 text-gray-300">Katamtaman ★★</td></tr></tbody></table>`,
+        pfTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 flex items-center justify-center text-lg'>🔐</span> Provably Fair at RTP",
+        pf1: `<h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2"><span class="text-cyber-green">🛡️</span> Provably Fair</h3><p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Ang Provably Fair ay isang cryptographic protocol na tumitiyak sa pagiging patas ng bawat round. Bago magsimula, bubuo ang server ng hash ng mga mina.</p><div class="glass-strong rounded-xl p-3 font-mono text-xs text-gray-500 break-all mt-auto border border-cyber-green/20">SHA-256: e3b0c44298fc1c14...</div>`,
+        pf2: `<h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2"><span class="text-cyber-blue">📈</span> RTP 97%</h3><p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Ang RTP (Return to Player) ay 97% sa Mines. Ibig sabihin, mula sa 1000 na taya, 970 ang bumabalik sa average.</p><div class="glass-strong rounded-xl p-5 mt-auto border border-cyber-blue/20"><div class="flex items-center justify-between mb-3"><span class="text-sm text-gray-400">Return to players</span><span class="text-lg font-bold text-cyber-green">97.00%</span></div><div class="w-full h-3 bg-white/5 rounded-full overflow-hidden"><div class="h-full rounded-full bg-gradient-to-r from-cyber-green to-emerald-500" style="width:97%"></div></div><div class="flex justify-between mt-2 text-xs text-gray-500"><span>0%</span><span>House Edge: 3%</span><span>100%</span></div></div>`,
+        pf3: `<h3 class="font-bold text-xl text-white mb-4 flex items-center gap-2"><span class="text-cyber-purple">⚙️</span> RNG Certified</h3><p class="text-gray-400 text-sm leading-relaxed mb-4 flex-grow">Ang Random Number Generator ay palaging sumasailalim sa independent audit para garantiyang 100% random.</p><div class="glass-strong rounded-xl p-4 mt-auto border border-cyber-purple/20 flex items-center gap-3"><div class="w-8 h-8 rounded-full bg-cyber-purple/20 flex items-center justify-center text-sm">📜</div><div><h4 class="text-white font-bold text-xs uppercase">Audit Passed</h4><p class="text-[10px] text-gray-500 mt-0.5">Prediction protection</p></div></div>`,
+        apkTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center text-lg'>📱</span> I-download ang Mines APK",
+        apkContent: `<p class="text-gray-400 text-sm leading-relaxed mb-6">Ang mobile version ng Mines ay available para sa Android via APK. Maglaro nang mabilis at may stable na koneksyon.</p><div class="glass-strong rounded-xl p-4 space-y-3 mb-6"><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">1</div><div><p class="text-sm font-medium text-white">Bumisita sa opisyal na site</p></div></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">2</div><div><p class="text-sm font-medium text-white">I-download ang APK file</p></div></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">3</div><div><p class="text-sm font-medium text-white">Payagan ang pag-install mula sa hindi kilalang mapagkukunan</p></div></div><div class="flex items-start gap-3"><div class="w-8 h-8 rounded-lg bg-cyber-green/10 flex items-center justify-center text-cyber-green text-sm flex-shrink-0">4</div><div><p class="text-sm font-medium text-white">I-install at simulan ang laro</p></div></div></div><div class="flex flex-wrap gap-3"><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> Android 6.0+</div><div class="glass-strong rounded-lg px-4 py-2 text-xs text-gray-400 flex items-center gap-2"><span class="text-cyber-green">✓</span> Libre</div></div>`,
+        faqTitle: "<span class='w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center text-lg'>❓</span> Mga Madalas Itanong (FAQ)",
+        faq1: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Ano ang Mines at paano ito laruin?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">Ang Mines ay isang crash game na nilalaro sa isang 5×5 grid. Bubuksan mo ang mga cell para humanap ng mga bituin at iwasan ang mga mina. Pwedeng i-adjust ang mga mina mula 1 hanggang 24.</div></div>`,
+        faq2: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Ano ang RTP ng Mines?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">Ang RTP (Return to Player) ay <strong class="text-white">97%</strong>. Ang House Edge ay 3% lamang.</div></div>`,
+        faq3: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Pwede ba maglaro ng libre sa demo mode?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">Oo, karamihan sa mga platform ay may demo mode para makapag-ensayo ka nang walang gastos.</div></div>`,
+        faq4: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Ano ang Provably Fair sa Mines?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed"><strong class="text-white">Provably Fair</strong> ay ang sistema para siguraduhing walang dayaan ang bawat round gamit ang math at cryptography.</div></div>`,
+        faq5: `<button onclick="toggleFaq(this)" class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 min-h-[44px]"><span class="font-semibold text-white text-sm sm:text-base">Ano ang pinakamagandang istratehiya sa Mines?</span><svg class="faq-chevron w-5 h-5 text-gray-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></button><div class="faq-answer"><div class="px-6 pb-5 text-sm text-gray-400 leading-relaxed">Walang garantisadong istratehiya, pero ang "Small Bets" (3 mina, buksan ang 3-4 cells) ang may pinakamababang risk.</div></div>`,
+        footerAbout: `<div class="flex items-center gap-2 mb-3"><div class="w-7 h-7 rounded-lg bg-gradient-to-br from-cyber-green to-cyber-blue flex items-center justify-center font-bold text-cyber-bg text-xs">M</div><span class="font-bold text-white">Mines<span class="text-cyber-green">.Guide</span></span></div><p class="text-xs text-gray-500 leading-relaxed">Analitikal na website para sa Mines game. Mga review, diskarte, at demo mode.</p>`,
+        footerNav: `<h4 class="font-semibold text-sm text-white mb-3">Nabigasyon</h4><nav class="space-y-2 text-xs text-gray-500"><a href="#how-to-play" class="block hover:text-cyber-green transition">Paano Maglaro</a><a href="#signal-bot" class="block hover:text-cyber-green transition">Signal Generator</a><a href="#strategies" class="block hover:text-cyber-green transition">Istratehiya</a><a href="#provably-fair" class="block hover:text-cyber-green transition">Provably Fair</a><a href="#faq" class="block hover:text-cyber-green transition">FAQ</a></nav>`,
+        footerLegal: `<h4 class="font-semibold text-sm text-white mb-3">Impormasyon</h4><div class="space-y-2 text-xs text-gray-500"><p>Ang content ay para sa 18+</p><p>Maglaro nang responsable</p></div>`,
+        footerCopy: `<p class="text-xs text-gray-600">© 2025 Mines.Guide — All Rights Reserved</p><div class="flex items-center gap-4 text-xs text-gray-600"><span>18+</span><span>|</span><span>Maglaro nang responsable</span></div>`,
+        navBotHome: "Home", navBotStrat: "Istratehiya", navBotSig: "Signals", navBotApk: "APK"
+      }
+    };
+
+    function changeLanguage(lang) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerHTML = translations[lang][key];
+        }
+      });
+      document.documentElement.lang = lang;
+    }
+
+    // Initialize signal grid
+    function initGrid() {
+      const grid = document.getElementById('signal-grid');
+      grid.innerHTML = '';
+      for (let i = 0; i < 25; i++) {
+        const cell = document.createElement('div');
+        cell.className = 'mine-cell rounded-[14px] flex items-center justify-center text-2xl cursor-pointer aspect-square relative overflow-hidden';
+        cell.innerHTML = '<span class="text-white/10 font-black text-sm relative z-10">?</span>';
+        grid.appendChild(cell);
+      }
+    }
+
+    // Generate signal
+    function generateSignal() {
+      const btn = document.getElementById('generate-btn');
+      const loader = document.getElementById('signal-loader');
+      const wrapper = document.getElementById('grid-wrapper');
+      const mineCount = parseInt(document.getElementById('mineCount').value);
+      const grid = document.getElementById('signal-grid');
+
+      btn.disabled = true;
+      btn.innerHTML = '<svg class="animate-spin w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> <span class="tracking-widest">...</span>';
+
+      loader.classList.add('active');
+      wrapper.classList.add('is-scanning');
+
+      initGrid();
+
+      setTimeout(() => {
+        wrapper.classList.remove('is-scanning');
+
+        const positions = [];
+        while (positions.length < mineCount) {
+          const pos = Math.floor(Math.random() * 25);
+          if (!positions.includes(pos)) positions.push(pos);
+        }
+
+        const cells = grid.querySelectorAll('.mine-cell');
+        cells.forEach((cell, index) => {
+          setTimeout(() => {
+            if (positions.includes(index)) {
+              cell.classList.add('revealed-mine');
+              cell.innerHTML = '<span class="drop-shadow-[0_0_8px_rgba(239,68,68,0.8)] scale-110 block">💣</span>';
+            } else {
+              cell.classList.add('revealed-star');
+              cell.innerHTML = '<span class="drop-shadow-[0_0_8px_rgba(0,255,136,0.8)] scale-110 block">⭐</span>';
+            }
+          }, index * 45);
+        });
+
+        const accuracy = (80 + Math.random() * 18).toFixed(1);
+        document.getElementById('accuracy-display').innerHTML = `<span class="text-cyber-green animate-pulse">●</span> ${accuracy}%`;
+
+        btn.disabled = false;
+        
+        // Resetting button text based on lang
+        const lang = document.getElementById('langSwitch').value;
+        const btnTexts = {
+            ru: "ОБНОВИТЬ СИГНАЛ", en: "UPDATE SIGNAL", hi: "सिग्नल अपडेट करें", tl: "I-UPDATE ANG SIGNAL"
+        };
+        btn.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg> <span class="tracking-widest uppercase">${btnTexts[lang] || btnTexts.ru}</span>`;
+
+        setTimeout(() => {
+          loader.classList.remove('active');
+          loader.style.width = '0%';
+          void loader.offsetWidth;
+        }, 800);
+
+      }, 2500);
+    }
+
+    // FAQ toggle
+    function toggleFaq(button) {
+      const item = button.closest('.faq-item');
+      const allItems = document.querySelectorAll('.faq-item');
+      allItems.forEach(i => {
+        if (i !== item) i.classList.remove('open');
+      });
+      item.classList.toggle('open');
+    }
+
+    // Live player count
+    function updatePlayerCount() {
+      const el = document.getElementById('players-count');
+      if (el) {
+        const base = 12000;
+        const variation = Math.floor(Math.random() * 3000);
+        el.textContent = (base + variation).toLocaleString('ru-RU');
+      }
+    }
+
+    // Init
+    document.addEventListener('DOMContentLoaded', () => {
+      initGrid();
+      setInterval(updatePlayerCount, 5000);
+      
+      // Auto-set language if needed based on browser (optional), defaulting to RU
+      // changeLanguage('ru');
+    });
+  </script>
+
+</body>
+</html>
