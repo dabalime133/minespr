@@ -182,6 +182,59 @@
     @media (max-width: 768px) {
       .bento-grid { gap: 12px !important; }
     }
+    /* Стиль глянцевых стикеров-флагов */
+.flag-sticker {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  /* Эффект объема и тени */
+  box-shadow: 0 3px 6px rgba(0,0,0,0.3), inset 0 -2px 3px rgba(0,0,0,0.2);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  filter: saturate(1.1) brightness(1.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.lang-btn {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.lang-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(0, 255, 136, 0.3); /* Цвет твоей основной темы */
+  transform: translateY(-2px);
+}
+
+.lang-btn:hover .flag-sticker {
+  transform: scale(1.2) rotate(8deg);
+  filter: saturate(1.4) brightness(1.2);
+  box-shadow: 0 5px 15px rgba(0, 255, 136, 0.3);
+}
+    /* Стили для маленьких стикеров в списке */
+.flag-sticker-small {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  filter: saturate(1.2);
+}
+
+/* Анимация появления меню */
+#langDropdown.active {
+  opacity: 1;
+  vertical-align: middle;
+  visibility: visible;
+  scale: 1;
+  transform: translateY(0);
+}
+
+/* Поворот стрелочки при открытии */
+#langButton.active svg {
+  transform: rotate(180deg);
+}
   </style>
 </head>
 
@@ -202,13 +255,35 @@
         <a href="#faq" data-i18n="navFaq" class="hover:text-cyber-green transition">FAQ</a>
       </nav>
 
-      <div class="flex items-center gap-2 sm:gap-4">
-        <select id="langSwitch" onchange="changeLanguage(this.value)" class="bg-black/40 text-white text-xs sm:text-sm font-bold outline-none cursor-pointer border border-cyber-border rounded-lg px-2 py-1.5 glass-strong">
-          <option value="ru" class="bg-cyber-bg">🇷🇺 RU</option>
-          <option value="en" class="bg-cyber-bg">🇬🇧 EN</option>
-          <option value="hi" class="bg-cyber-bg">🇮🇳 HI</option>
-          <option value="tl" class="bg-cyber-bg">🇵🇭 PH</option>
-        </select>
+   <div class="relative inline-block text-left" id="langContainer">
+  <button id="langButton" type="button" class="flex items-center gap-2 bg-black/40 text-white text-xs sm:text-sm font-bold border border-cyber-border rounded-lg px-3 py-1.5 glass-strong hover:bg-white/10 transition-all">
+    <img id="currentFlag" src="https://hatscripts.github.io/circle-flags/flags/ru.svg" class="w-5 h-5 rounded-full shadow-sm" alt="RU">
+    <span id="currentLangText">RU</span>
+    <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+  </button>
+
+  <div id="langDropdown" class="absolute right-0 mt-2 w-32 origin-top-right rounded-xl bg-cyber-bg border border-cyber-border shadow-2xl opacity-0 invisible scale-95 transition-all duration-200 z-[100] glass-strong">
+    <div class="p-1 space-y-1">
+      
+      <button onclick="selectLang('ru', 'RU', 'ru')" class="flex items-center w-full gap-3 px-3 py-2 text-xs font-bold text-gray-300 hover:bg-white/10 rounded-lg transition-colors">
+        <img src="https://hatscripts.github.io/circle-flags/flags/ru.svg" class="flag-sticker-small" alt="RU"> RU
+      </button>
+
+      <button onclick="selectLang('en', 'EN', 'us')" class="flex items-center w-full gap-3 px-3 py-2 text-xs font-bold text-gray-300 hover:bg-white/10 rounded-lg transition-colors">
+        <img src="https://hatscripts.github.io/circle-flags/flags/us.svg" class="flag-sticker-small" alt="EN"> EN
+      </button>
+
+      <button onclick="selectLang('hi', 'HI', 'in')" class="flex items-center w-full gap-3 px-3 py-2 text-xs font-bold text-gray-300 hover:bg-white/10 rounded-lg transition-colors">
+        <img src="https://hatscripts.github.io/circle-flags/flags/in.svg" class="flag-sticker-small" alt="HI"> HI
+      </button>
+
+      <button onclick="selectLang('tl', 'PH', 'ph')" class="flex items-center w-full gap-3 px-3 py-2 text-xs font-bold text-gray-300 hover:bg-white/10 rounded-lg transition-colors">
+        <img src="https://hatscripts.github.io/circle-flags/flags/ph.svg" class="flag-sticker-small" alt="PH"> PH
+      </button>
+
+    </div>
+  </div>
+</div>
         
         <a href="https://lkiv.cc/dea2" target="_blank" data-i18n="btnCasinoTop" class="hidden sm:flex px-4 py-1.5 rounded-lg bg-gradient-to-r from-cyber-green to-emerald-500 text-cyber-bg font-bold text-sm hover:shadow-lg hover:shadow-cyber-green/25 transition-all whitespace-nowrap">
           Перейти в казино
@@ -1092,6 +1167,38 @@
       // Auto-set language if needed based on browser (optional), defaulting to RU
       // changeLanguage('ru');
     });
+    // Логика кастомного переключателя языков
+const langButton = document.getElementById('langButton');
+const langDropdown = document.getElementById('langDropdown');
+
+if (langButton && langDropdown) {
+    langButton.addEventListener('click', (e) => {
+        e.stopPropagation(); // Чтобы клик не пробрасывался дальше
+        langButton.classList.toggle('active');
+        langDropdown.classList.toggle('active');
+    });
+
+    // Выбор языка и обновление интерфейса
+    window.selectLang = function(val, text, flagCode) {
+        const currentFlag = document.getElementById('currentFlag');
+        const currentLangText = document.getElementById('currentLangText');
+        
+        if (currentFlag) currentFlag.src = `https://hatscripts.github.io/circle-flags/flags/${flagCode}.svg`;
+        if (currentLangText) currentLangText.innerText = text;
+        
+        langButton.classList.remove('active');
+        langDropdown.classList.remove('active');
+        
+        // Вызываем твою рабочую функцию смены текстов
+        changeLanguage(val);
+    };
+
+    // Закрытие при клике в любое другое место
+    document.addEventListener('click', () => {
+        langButton.classList.remove('active');
+        langDropdown.classList.remove('active');
+    });
+}
   </script>
 
 </body>
